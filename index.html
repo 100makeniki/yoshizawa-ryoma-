@@ -5,143 +5,193 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>吉澤遼馬 — 公式サイト</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--ac:#d1dc43;--gr:#1f865c;--dk:#111;--mid:#151515;--card:#1a1a1a;--card2:#161616;}
-body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--dk);color:#fff;overflow-x:hidden;}
+:root{
+  --ac:#b8965a;
+  --ac2:#d4b07a;
+  --navy:#1a3a5c;
+  --green:#1f865c;
+  --paper:#f7f4ef;
+  --paper2:#ede9e1;
+  --white:#ffffff;
+  --ink:#0e0e0e;
+  --ink2:#3a3a3a;
+  --ink3:#7a7a7a;
+  --border:rgba(14,14,14,0.1);
+}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
 a{text-decoration:none;}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(17,17,17,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(209,220,67,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px;}
-.nav-logo{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;font-style:italic;color:var(--ac);letter-spacing:.06em;}
-.nav-logo span{color:#fff;}
-.nav-links{display:flex;gap:1.4rem;list-style:none;}
-.nav-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.55);transition:color .2s;}
-.nav-links a:hover{color:var(--ac);}
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:0.5px solid var(--border);
+  padding:0 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-logo{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;color:var(--navy);letter-spacing:.08em;}
+.nav-logo span{color:var(--ac);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink2);transition:color .2s;}
+.nav-links a:hover{color:var(--navy);}
 
 /* HERO */
-.hero{position:relative;overflow:hidden;}
-.hero-line{position:absolute;top:0;right:40%;width:1px;height:100%;background:rgba(209,220,67,0.12);pointer-events:none;}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:530px;}
-.hero-left{background:var(--dk);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;}
-.hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.25em;color:var(--ac);margin-bottom:14px;}
-.hero-name{font-family:'Montserrat',sans-serif;font-size:50px;font-weight:900;font-style:italic;line-height:1.05;color:#fff;margin-bottom:6px;white-space:nowrap;}
-.hero-name span{color:var(--ac);}
-.hero-name-jp{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,0.3);margin-bottom:22px;}
-.hero-tagline{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.1;color:rgba(255,255,255,0.7);margin-bottom:26px;max-width:300px;}
-.hero-badges{display:flex;flex-wrap:wrap;gap:6px;}
-.badge{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.05em;border:1px solid var(--ac);color:var(--ac);padding:4px 10px;border-radius:2px;}
-.hero-right{background:var(--card2);border-left:1px solid rgba(209,220,67,0.1);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem 2rem;gap:18px;}
-.hero-avatar{width:155px;height:155px;border-radius:50%;background:linear-gradient(135deg,var(--gr),#0d4a31);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:50px;font-weight:800;color:#fff;border:3px solid var(--ac);box-shadow:0 0 0 8px rgba(209,220,67,0.07);flex-shrink:0;}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:230px;}
-.stat-card{background:var(--card);border:1px solid rgba(209,220,67,0.12);border-radius:4px;padding:.7rem;text-align:center;}
-.stat-num{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;font-style:italic;color:var(--ac);}
-.stat-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-top:3px;}
-.hero-bar{height:3px;background:linear-gradient(90deg,var(--gr),var(--ac),transparent);}
+.hero{display:grid;grid-template-columns:1fr 1fr;height:580px;}
+.hero-left{background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem;}
+.hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--ac2);margin-bottom:16px;}
+.hero-name{font-family:'Montserrat',sans-serif;font-size:54px;font-weight:900;font-style:italic;line-height:1.05;color:#fff;margin-bottom:8px;white-space:nowrap;}
+.hero-name span{color:var(--ac2);}
+.hero-name-jp{font-family:'Noto Serif JP',serif;font-size:16px;letter-spacing:.15em;color:rgba(255,255,255,0.4);margin-bottom:24px;}
+.hero-tagline{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.2;color:rgba(255,255,255,0.82);margin-bottom:28px;max-width:340px;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;}
+.badge{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;border:0.5px solid rgba(184,150,90,0.6);color:var(--ac2);padding:5px 12px;border-radius:2px;}
+.hero-right{background:var(--paper2);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem 2rem;gap:20px;}
+.hero-avatar{width:170px;height:170px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:56px;font-weight:800;color:#fff;border:4px solid var(--ac);box-shadow:0 0 0 10px rgba(184,150,90,0.12);flex-shrink:0;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:250px;}
+.stat-card{background:var(--white);border:0.5px solid var(--border);border-radius:6px;padding:.85rem;text-align:center;}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;font-style:italic;color:var(--navy);}
+.stat-label{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink3);margin-top:3px;}
+.hero-bar{height:3px;background:linear-gradient(90deg,var(--navy),var(--ac),transparent);}
 
 /* SECTIONS */
-section{padding:4.5rem 2rem;}
-.sec-eye{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.25em;color:var(--ac);margin-bottom:8px;}
-.sec-title{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;font-style:italic;color:#fff;margin-bottom:28px;}
+section{padding:5.5rem 3rem;}
+.sec-eye{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.sec-eye::after{content:'';width:32px;height:0.5px;background:var(--ac);}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:600;color:var(--navy);margin-bottom:36px;}
 
 /* PROFILE */
-#profile{background:var(--mid);}
-.profile-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start;}
-.profile-card{background:var(--card);border:1px solid rgba(209,220,67,0.15);border-radius:4px;padding:1.75rem;position:relative;overflow:hidden;}
-.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gr),var(--ac));}
-.p-role{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;color:var(--ac);margin-bottom:6px;}
-.p-name{font-family:'Noto Serif JP',serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:4px;}
-.p-name-en{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:.1em;margin-bottom:14px;}
-.p-divider{height:1px;background:rgba(255,255,255,0.07);margin:10px 0;}
-.p-item{display:flex;gap:9px;margin-bottom:9px;align-items:flex-start;}
-.p-icon{width:25px;height:25px;background:var(--gr);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;}
-.p-item-label{font-size:10px;color:rgba(255,255,255,0.38);}
-.p-item-val{font-size:12px;color:#fff;font-weight:500;margin-top:2px;}
-.profile-bio{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.3;color:rgba(255,255,255,0.72);}
-.profile-bio p{margin-bottom:14px;}
-.phil{margin-top:18px;border-left:3px solid var(--ac);padding:12px 16px;background:var(--card);border-radius:0 4px 4px 0;}
-.phil-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--ac);margin-bottom:5px;}
-.phil-text{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:600;color:#fff;line-height:1.9;}
+#profile{background:var(--white);}
+.profile-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:4rem;align-items:start;}
+.profile-card{background:var(--paper);border:0.5px solid var(--border);border-radius:8px;padding:2rem;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--ac));}
+.p-role{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;color:var(--ac);margin-bottom:6px;}
+.p-name{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.p-name-en{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink3);letter-spacing:.1em;margin-bottom:16px;}
+.p-divider{height:0.5px;background:var(--border);margin:12px 0;}
+.p-item{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
+.p-icon{width:28px;height:28px;background:var(--navy);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;}
+.p-item-label{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink3);}
+.p-item-val{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);font-weight:500;margin-top:2px;}
+.profile-bio{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.4;color:var(--ink2);}
+.profile-bio p{margin-bottom:16px;}
+.phil{margin-top:24px;border-left:3px solid var(--ac);padding:14px 20px;background:var(--paper);border-radius:0 6px 6px 0;}
+.phil-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--ac);margin-bottom:6px;}
+.phil-text{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--navy);line-height:2;}
 
 /* SERVICES */
-#service{background:var(--dk);}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.svc-card{background:var(--card2);border:1px solid rgba(209,220,67,0.12);border-radius:4px;padding:1.5rem;transition:border-color .2s;}
-.svc-card:hover{border-color:var(--ac);}
-.svc-icon{width:36px;height:36px;background:var(--gr);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:17px;}
-.svc-co{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:5px;}
-.svc-title{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:7px;line-height:1.5;}
-.svc-desc{font-size:11px;line-height:1.9;color:rgba(255,255,255,0.48);}
+#service{background:var(--paper);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.svc-card{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:2rem;transition:border-color .2s,transform .2s;}
+.svc-card:hover{border-color:var(--navy);transform:translateY(-3px);}
+.svc-icon{width:44px;height:44px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px;}
+.svc-co{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:6px;}
+.svc-title{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.5;}
+.svc-desc{font-family:'DM Sans',sans-serif;font-size:14px;line-height:2;color:var(--ink3);}
 
 /* YOUTUBE */
-#youtube{background:var(--mid);}
-.yt-wrap{border-radius:6px;overflow:hidden;border:1px solid rgba(209,220,67,0.15);aspect-ratio:16/9;width:100%;margin-bottom:12px;}
+#youtube{background:var(--white);}
+.yt-wrap{border-radius:10px;overflow:hidden;border:0.5px solid var(--border);aspect-ratio:16/9;width:100%;margin-bottom:16px;}
 .yt-wrap iframe{width:100%;height:100%;display:block;border:none;}
-.yt-meta{display:flex;align-items:center;gap:12px;}
-.yt-badge{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:5px 14px;border-radius:3px;white-space:nowrap;}
-.yt-desc{font-family:'Noto Serif JP',serif;font-size:12px;color:rgba(255,255,255,0.48);line-height:1.8;}
+.yt-meta{display:flex;align-items:center;gap:14px;}
+.yt-badge{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;white-space:nowrap;}
+.yt-desc{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--ink3);line-height:1.9;}
 
 /* NEWS */
-#news{background:var(--dk);}
-.news-item{display:grid;grid-template-columns:108px 78px 1fr;gap:14px;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-.news-date{font-family:'Montserrat',sans-serif;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:.05em;}
-.news-tag{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;border:1px solid var(--ac);color:var(--ac);padding:3px 7px;border-radius:2px;text-align:center;}
-.news-title{font-family:'Noto Serif JP',serif;font-size:12px;color:rgba(255,255,255,0.72);line-height:1.7;}
+#news{background:var(--navy);}
+#news .sec-eye{color:var(--ac2);}
+#news .sec-eye::after{background:var(--ac2);}
+#news .sec-title{color:#fff;}
+.news-item{display:grid;grid-template-columns:120px 90px 1fr;gap:16px;align-items:center;padding:1.3rem 0;border-bottom:0.5px solid rgba(255,255,255,0.1);}
+.news-date{font-family:'Montserrat',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:.05em;}
+.news-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;border:0.5px solid var(--ac);color:var(--ac2);padding:3px 8px;border-radius:2px;text-align:center;}
+.news-title{font-family:'Noto Serif JP',serif;font-size:15px;color:rgba(255,255,255,0.82);line-height:1.7;}
 
-/* SNS SLIDER */
-#sns{background:var(--mid);overflow:hidden;}
-.sns-viewport{overflow:hidden;}
-.sns-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-.sns-card{flex-shrink:0;width:460px;background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;opacity:0.42;transition:opacity .3s,border-color .3s;}
-.sns-card.active{opacity:1;border-color:var(--ac);}
-.sns-card-header{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.06);}
-.sns-platform-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:13px;font-weight:700;}
-.sns-card-name{font-family:'Noto Serif JP',serif;font-size:12px;font-weight:500;color:#fff;}
-.sns-card-handle{font-family:'Montserrat',sans-serif;font-size:9px;color:rgba(255,255,255,0.38);letter-spacing:.04em;}
-.sns-card-body{height:265px;overflow:hidden;background:var(--card2);}
+/* =====================
+   SNS SLIDER — 中央固定・両サイドにのぞく
+   ===================== */
+#sns{background:var(--paper2);overflow:hidden;}
+.sns-stage{
+  position:relative;
+  width:100%;
+  /* 中央のカードを見せて、両サイドをのぞかせる */
+  padding:0;
+  overflow:hidden;
+}
+.sns-track{
+  display:flex;
+  gap:24px;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  /* 初期位置はJSで設定 */
+}
+.sns-card{
+  flex-shrink:0;
+  width:560px; /* カード幅 */
+  background:var(--white);
+  border:0.5px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  transition:opacity .4s, transform .4s, box-shadow .4s;
+  opacity:0.45;
+  transform:scale(0.95);
+}
+.sns-card.active{
+  opacity:1;
+  transform:scale(1);
+  box-shadow:0 8px 40px rgba(26,58,92,0.12);
+  border-color:rgba(26,58,92,0.3);
+}
+.sns-card-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:0.5px solid var(--border);}
+.sns-platform-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:16px;font-weight:700;}
+.sns-card-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.sns-card-handle{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--ink3);letter-spacing:.04em;}
+.sns-card-body{height:300px;overflow:hidden;background:var(--paper);}
 .sns-card-body iframe{width:100%;height:100%;border:none;display:block;}
-.x-mock{height:265px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:7px;}
-.x-post{background:#1e1e1e;border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:8px 11px;}
-.x-post-date{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--ac);margin-bottom:3px;}
-.x-post-text{font-family:'Noto Serif JP',serif;font-size:11px;color:rgba(255,255,255,0.68);line-height:1.8;}
-.sns-card-footer{padding:9px 14px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;}
-.sns-card-footer a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--ac);letter-spacing:.05em;}
-.sns-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;}
-.sns-arrow{width:32px;height:32px;border-radius:50%;border:1px solid rgba(209,220,67,0.3);background:transparent;cursor:pointer;color:var(--ac);font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
-.sns-arrow:hover{border-color:var(--ac);}
-.sns-dots{display:flex;gap:7px;}
-.sns-dot{height:4px;border-radius:2px;border:none;cursor:pointer;transition:all .25s;background:rgba(255,255,255,0.18);}
-.sns-dot.active{background:var(--ac);}
+.x-mock{height:300px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.x-post{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:12px 14px;}
+.x-post-date{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--ac);margin-bottom:5px;}
+.x-post-text{font-family:'Noto Serif JP',serif;font-size:14px;color:var(--ink2);line-height:1.9;}
+.sns-card-footer{padding:12px 18px;border-top:0.5px solid var(--border);text-align:right;}
+.sns-card-footer a{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.05em;}
+.sns-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+.sns-arrow{width:40px;height:40px;border-radius:50%;border:0.5px solid var(--border);background:var(--white);cursor:pointer;font-size:18px;color:var(--navy);display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.sns-arrow:hover{border-color:var(--navy);background:var(--navy);color:#fff;}
+.sns-dots{display:flex;gap:8px;align-items:center;}
+.sns-dot{height:5px;border-radius:3px;border:none;cursor:pointer;transition:all .3s;background:rgba(26,58,92,0.2);}
+.sns-dot.active{background:var(--navy);}
 
 /* CONTACT */
-#contact{background:var(--card2);}
-.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
-.contact-text{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.2;color:rgba(255,255,255,0.62);margin-bottom:18px;}
-.contact-info{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;}
-.contact-form{display:flex;flex-direction:column;gap:10px;}
-.form-group{display:flex;flex-direction:column;gap:4px;}
-.form-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.45);}
-.form-input, .form-textarea{padding:9px 13px;font-size:12px;font-family:inherit;border:1px solid rgba(255,255,255,0.1);border-radius:3px;background:var(--card);color:#fff;outline:none;transition:border-color .2s;}
-.form-input:focus, .form-textarea:focus{border-color:var(--ac);}
-.form-textarea{height:95px;resize:vertical;}
-.form-submit{padding:11px 26px;background:var(--ac);color:var(--dk);border:none;border-radius:3px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:900;letter-spacing:.1em;cursor:pointer;align-self:flex-start;transition:opacity .2s;}
-.form-submit:hover{opacity:.85;}
+#contact{background:var(--white);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start;}
+.contact-text{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.4;color:var(--ink2);margin-bottom:24px;}
+.contact-info{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink2);line-height:1.8;}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ink3);}
+.form-input,.form-textarea{padding:12px 14px;font-size:15px;font-family:inherit;border:0.5px solid var(--border);border-radius:4px;background:var(--paper);color:var(--ink);outline:none;transition:border-color .2s;}
+.form-input:focus,.form-textarea:focus{border-color:var(--navy);}
+.form-textarea{height:120px;resize:vertical;}
+.form-submit{padding:14px 32px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;cursor:pointer;align-self:flex-start;transition:background .2s;}
+.form-submit:hover{background:#2d5a8e;}
 
 /* FOOTER */
-footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;text-align:center;}
-.footer-logo{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;font-style:italic;color:var(--ac);margin-bottom:12px;}
-.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.4rem;margin-bottom:12px;}
-.footer-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.28);}
-.footer-links a:hover{color:var(--ac);}
-.footer-copy{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:.06em;}
+footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;text-align:center;}
+.footer-logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:14px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:2rem;margin-bottom:14px;}
+.footer-links a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.35);}
+.footer-links a:hover{color:var(--ac2);}
+.footer-copy{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.25);}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">YOSHIZAWA<span>.</span></div>
+  <div class="nav-logo">吉澤遼馬<span>.</span></div>
   <ul class="nav-links">
     <li><a href="#profile">PROFILE</a></li>
     <li><a href="#service">SERVICES</a></li>
@@ -154,36 +204,33 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-line"></div>
-  <div class="hero-grid">
-    <div class="hero-left">
-      <p class="hero-eyebrow">REPRESENTATIVE / JUDO THERAPIST</p>
-      <h1 class="hero-name">YOSHIZAWA<br><span>RYOMA</span></h1>
-      <p class="hero-name-jp">吉澤 遼馬</p>
-      <p class="hero-tagline">法人経営と臨床の現場を両立する<br>柔道整復師の新しいキャリアモデルを描く。</p>
-      <div class="hero-badges">
-        <span class="badge">柔道整復師</span>
-        <span class="badge">Life is journey</span>
-        <span class="badge">bonds</span>
-        <span class="badge">J's.treatment 三田院</span>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-avatar">遼</div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">法人代表</div></div>
-        <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">唯一の柔整師</div></div>
-        <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">発信媒体</div></div>
-        <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">可能性</div></div>
-      </div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">REPRESENTATIVE / JUDO THERAPIST</p>
+    <h1 class="hero-name">YOSHIZAWA<br><span>RYOMA</span></h1>
+    <p class="hero-name-jp">吉澤 遼馬</p>
+    <p class="hero-tagline">法人経営と臨床の現場を両立する<br>柔道整復師の新しいキャリアモデルを描く。</p>
+    <div class="hero-badges">
+      <span class="badge">柔道整復師</span>
+      <span class="badge">Life is journey</span>
+      <span class="badge">bonds</span>
+      <span class="badge">J's.treatment 三田院</span>
     </div>
   </div>
-  <div class="hero-bar"></div>
+  <div class="hero-right">
+    <div class="hero-avatar">遼</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">法人代表</div></div>
+      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">唯一の柔整師</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">発信媒体</div></div>
+      <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">可能性</div></div>
+    </div>
+  </div>
 </div>
+<div class="hero-bar"></div>
 
 <!-- PROFILE -->
 <section id="profile">
-  <p class="sec-eye">— PROFILE</p>
+  <p class="sec-eye">PROFILE</p>
   <h2 class="sec-title">代表プロフィール</h2>
   <div class="profile-grid">
     <div class="profile-card">
@@ -223,7 +270,7 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- SERVICES -->
 <section id="service">
-  <p class="sec-eye">— SERVICES</p>
+  <p class="sec-eye">SERVICES</p>
   <h2 class="sec-title">事業内容</h2>
   <div class="svc-grid">
     <div class="svc-card">
@@ -249,10 +296,10 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- YOUTUBE -->
 <section id="youtube">
-  <p class="sec-eye">— YOUTUBE</p>
-  <h2 class="sec-title">J's.treatment 三田院</h2>
+  <p class="sec-eye">YOUTUBE</p>
+  <h2 class="sec-title">J's.treatment 三田院 チャンネル</h2>
   <div class="yt-wrap">
-    <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UCF0gFSQUSot6-E2Jvm4L1hw&autoplay=0&rel=0"
+    <iframe src="https://www.youtube.com/embed/pxppQbeMzoE"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen title="YouTube"></iframe>
   </div>
@@ -264,7 +311,7 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- NEWS -->
 <section id="news">
-  <p class="sec-eye">— NEWS</p>
+  <p class="sec-eye">NEWS</p>
   <h2 class="sec-title">ニュース・お知らせ</h2>
   <div class="news-item"><span class="news-date">2025.05.01</span><span class="news-tag">VOICY</span><span class="news-title">「ヒザラジ！」新エピソード配信 — 経営と臨床のリアルを語ります</span></div>
   <div class="news-item"><span class="news-date">2025.04.15</span><span class="news-tag">SEMINAR</span><span class="news-title">柔道整復師のキャリア形成セミナー開催のお知らせ</span></div>
@@ -274,12 +321,12 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- SNS SLIDER -->
 <section id="sns">
-  <p class="sec-eye">— SOCIAL MEDIA</p>
+  <p class="sec-eye">SOCIAL MEDIA</p>
   <h2 class="sec-title">SNS・発信チャンネル</h2>
-  <div class="sns-viewport">
+  <div class="sns-stage">
     <div class="sns-track" id="snsTrack">
       <!-- X -->
-      <div class="sns-card active" id="sns-0">
+      <div class="sns-card" data-index="0">
         <div class="sns-card-header">
           <div class="sns-platform-icon" style="background:#000">𝕏</div>
           <div><div class="sns-card-name">吉澤遼馬</div><div class="sns-card-handle">@Knee_geek</div></div>
@@ -295,7 +342,7 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
         <div class="sns-card-footer"><a href="https://x.com/Knee_geek" target="_blank">Xで見る ↗</a></div>
       </div>
       <!-- Instagram -->
-      <div class="sns-card" id="sns-1">
+      <div class="sns-card" data-index="1">
         <div class="sns-card-header">
           <div class="sns-platform-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)">📷</div>
           <div><div class="sns-card-name">吉澤遼馬（セラピスト）</div><div class="sns-card-handle">@ryoma_yoshi_therapist</div></div>
@@ -306,18 +353,18 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
         <div class="sns-card-footer"><a href="https://www.instagram.com/ryoma_yoshi_therapist/" target="_blank">Instagramで見る ↗</a></div>
       </div>
       <!-- Facebook -->
-      <div class="sns-card" id="sns-2">
+      <div class="sns-card" data-index="2">
         <div class="sns-card-header">
-          <div class="sns-platform-icon" style="background:#1877f2;font-family:serif;font-weight:700">f</div>
+          <div class="sns-platform-icon" style="background:#1877f2;font-family:serif;font-weight:900">f</div>
           <div><div class="sns-card-name">Ryoma Yoshizawa</div><div class="sns-card-handle">ryoma.yoshizawa1213</div></div>
         </div>
         <div class="sns-card-body">
-          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=500&height=265&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" title="Facebook"></iframe>
+          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=560&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" title="Facebook"></iframe>
         </div>
         <div class="sns-card-footer"><a href="https://www.facebook.com/ryoma.yoshizawa1213" target="_blank">Facebookで見る ↗</a></div>
       </div>
       <!-- Voicy -->
-      <div class="sns-card" id="sns-3">
+      <div class="sns-card" data-index="3">
         <div class="sns-card-header">
           <div class="sns-platform-icon" style="background:#00c4a7">🎙</div>
           <div><div class="sns-card-name">吉澤遼馬のヒザラジ！</div><div class="sns-card-handle">voicy.jp/channel/4526</div></div>
@@ -332,10 +379,10 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
   <div class="sns-controls">
     <button class="sns-arrow" id="snsL">‹</button>
     <div class="sns-dots" id="snsDots">
-      <button class="sns-dot active" style="width:22px"></button>
-      <button class="sns-dot" style="width:6px"></button>
-      <button class="sns-dot" style="width:6px"></button>
-      <button class="sns-dot" style="width:6px"></button>
+      <button class="sns-dot" style="width:24px"></button>
+      <button class="sns-dot" style="width:8px"></button>
+      <button class="sns-dot" style="width:8px"></button>
+      <button class="sns-dot" style="width:8px"></button>
     </div>
     <button class="sns-arrow" id="snsR">›</button>
   </div>
@@ -343,7 +390,7 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="sec-eye">— CONTACT</p>
+  <p class="sec-eye">CONTACT</p>
   <h2 class="sec-title">お問い合わせ</h2>
   <div class="contact-grid">
     <div>
@@ -357,14 +404,14 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
       <div class="form-group"><label class="form-label">メールアドレス</label><input class="form-input" type="email" placeholder="example@email.com"></div>
       <div class="form-group"><label class="form-label">件名</label><input class="form-input" type="text" placeholder="ご相談内容の件名"></div>
       <div class="form-group"><label class="form-label">メッセージ</label><textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください"></textarea></div>
-      <button class="form-submit">SEND MESSAGE →</button>
+      <button class="form-submit">送信する →</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-logo">YOSHIZAWA RYOMA</p>
+  <p class="footer-logo">吉澤 遼馬</p>
   <div class="footer-links">
     <a href="#profile">PROFILE</a>
     <a href="#service">SERVICES</a>
@@ -378,32 +425,47 @@ footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;tex
 
 <script>
 (function(){
-  const track = document.getElementById('snsTrack');
-  const dots  = document.querySelectorAll('.sns-dot');
-  const cards = document.querySelectorAll('.sns-card');
-  const N = 4, GAP = 20, PEEK = 56;
-  let cur = 0, timer;
+  const track   = document.getElementById('snsTrack');
+  const dots    = document.querySelectorAll('.sns-dot');
+  const cards   = document.querySelectorAll('.sns-card');
+  const stage   = document.querySelector('.sns-stage');
+  const N       = 4;
+  const GAP     = 24;
+  let cur       = 0;
+  let timer;
 
-  function cw(){ return cards[0].offsetWidth + GAP; }
+  function cardW(){ return cards[0].offsetWidth; }
+  function stageW(){ return stage.offsetWidth; }
+
+  /* 中央に表示するためのオフセット計算 */
+  function calcOffset(idx){
+    const cw = cardW();
+    const sw = stageW();
+    /* idx番カードの左端を、ステージ中央に合わせる */
+    return (sw / 2) - (cw / 2) - idx * (cw + GAP);
+  }
 
   function goTo(i){
     cur = ((i % N) + N) % N;
-    track.style.transform = `translateX(${-(cur * cw()) + PEEK}px)`;
-    dots.forEach((d,j)=>{
+    track.style.transform = `translateX(${calcOffset(cur)}px)`;
+    dots.forEach((d, j) => {
       d.classList.toggle('active', j === cur);
-      d.style.width = j === cur ? '22px' : '6px';
+      d.style.width = j === cur ? '24px' : '8px';
     });
-    cards.forEach((c,j) => c.classList.toggle('active', j === cur));
+    cards.forEach((c, j) => c.classList.toggle('active', j === cur));
   }
 
-  function start(){ timer = setInterval(()=>goTo(cur+1), 4500); }
-  function stop(){ clearInterval(timer); }
+  function start(){ timer = setInterval(() => goTo(cur + 1), 4500); }
+  function stop(){  clearInterval(timer); }
 
-  document.getElementById('snsR').onclick = ()=>{ stop(); goTo(cur+1); start(); };
-  document.getElementById('snsL').onclick = ()=>{ stop(); goTo(cur-1); start(); };
-  dots.forEach((d,i)=>d.addEventListener('click',()=>{ stop(); goTo(i); start(); }));
+  document.getElementById('snsR').onclick = () => { stop(); goTo(cur + 1); start(); };
+  document.getElementById('snsL').onclick = () => { stop(); goTo(cur - 1); start(); };
+  dots.forEach((d, i) => d.addEventListener('click', () => { stop(); goTo(i); start(); }));
 
-  goTo(0);
+  /* 初期化 & リサイズ対応 */
+  function init(){ goTo(0); }
+  window.addEventListener('resize', () => goTo(cur));
+  init();
   start();
 })();
 </script>
