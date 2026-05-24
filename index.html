@@ -1,0 +1,253 @@
+import { useState, useRef, useEffect } from "react";
+
+export default function YoshizawaRyoma() {
+  const [snsCur, setSnsCur] = useState(0);
+  const timerRef = useRef(null);
+  const N = 4;
+
+  const resetTimer = (i) => {
+    clearInterval(timerRef.current);
+    setSnsCur(((i % N) + N) % N);
+    timerRef.current = setInterval(() => setSnsCur(c => (c + 1) % N), 4500);
+  };
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => setSnsCur(c => (c + 1) % N), 4500);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  const snsData = [
+    { id: 'x', bg: '#000', name: '吉澤遼馬', handle: '@Knee_geek', url: 'https://x.com/Knee_geek', label: 'Xで見る',
+      posts: [
+        { date: '2025.05.20', text: '法人経営×整形外科勤務、今日も現場からリアルをお届けします。柔道整復師の新しいキャリアについて考えていること。' },
+        { date: '2025.05.18', text: '膝の痛みに悩む患者さんが「Sensory First」のアプローチで変わっていく瞬間が一番好き。' },
+        { date: '2025.05.15', text: '経営と臨床、どちらも手を抜けない。だからこそ面白い。#柔道整復師 #ヒザラジ' },
+        { date: '2025.05.12', text: '今日のヒザラジ更新しました。「なぜ柔道整復師が会社を作るのか」について話しています。' },
+      ]
+    },
+    { id: 'ig', bg: 'linear-gradient(135deg,#f09433,#dc2743,#bc1888)', name: '吉澤遼馬（セラピスト）', handle: '@ryoma_yoshi_therapist', url: 'https://www.instagram.com/ryoma_yoshi_therapist/', label: 'Instagramで見る', embedSrc: 'https://www.instagram.com/ryoma_yoshi_therapist/embed' },
+    { id: 'fb', bg: '#1877f2', name: 'Ryoma Yoshizawa', handle: 'ryoma.yoshizawa1213', url: 'https://www.facebook.com/ryoma.yoshizawa1213', label: 'Facebookで見る', embedSrc: 'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=500&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false' },
+    { id: 'vo', bg: '#00c4a7', name: '吉澤遼馬のヒザラジ！', handle: 'voicy.jp/channel/4526', url: 'https://voicy.jp/channel/4526', label: 'Voicyで聴く', embedSrc: 'https://voicy.jp/channel/4526/embed' },
+  ];
+
+  const cardW = 460, gap = 20, peek = 56;
+  const offset = -(snsCur * (cardW + gap)) + peek;
+  const ac = '#d1dc43', gr = '#1f865c', dk = '#111';
+
+  return (
+    <div style={{fontFamily:"'DM Sans','Noto Sans JP',sans-serif",background:dk,color:'#fff',overflowX:'hidden'}}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');*{box-sizing:border-box;margin:0;padding:0;}a{text-decoration:none;}`}</style>
+
+      {/* NAV */}
+      <nav style={{position:'sticky',top:0,zIndex:100,background:'rgba(17,17,17,0.96)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(209,220,67,0.2)',padding:'0 2rem',display:'flex',alignItems:'center',justifyContent:'space-between',height:58}}>
+        <div style={{fontFamily:'Montserrat',fontSize:15,fontWeight:900,fontStyle:'italic',color:ac,letterSpacing:'.06em'}}>YOSHIZAWA<span style={{color:'#fff'}}>.</span></div>
+        <ul style={{display:'flex',gap:'1.4rem',listStyle:'none'}}>
+          {['PROFILE','SERVICES','YOUTUBE','NEWS','SNS','CONTACT'].map(t=>(
+            <li key={t}><a href="#" style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.55)'}}>{t}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* HERO */}
+      <div style={{position:'relative',overflow:'hidden'}}>
+        <div style={{position:'absolute',top:0,right:'40%',width:1,height:'100%',background:'rgba(209,220,67,0.12)',pointerEvents:'none'}}/>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',minHeight:530}}>
+          <div style={{background:dk,display:'flex',flexDirection:'column',justifyContent:'center',padding:'4rem 3rem'}}>
+            <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:14}}>REPRESENTATIVE / JUDO THERAPIST</p>
+            <h1 style={{fontFamily:'Montserrat',fontSize:50,fontWeight:900,fontStyle:'italic',lineHeight:1.05,color:'#fff',marginBottom:6,whiteSpace:'nowrap'}}>YOSHIZAWA<br/><span style={{color:ac}}>RYOMA</span></h1>
+            <p style={{fontFamily:'Montserrat',fontSize:11,letterSpacing:'.12em',color:'rgba(255,255,255,0.3)',marginBottom:22}}>吉澤 遼馬</p>
+            <p style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.1,color:'rgba(255,255,255,0.7)',marginBottom:26,maxWidth:300}}>法人経営と臨床の現場を両立する<br/>柔道整復師の新しいキャリアモデルを描く。</p>
+            <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+              {['柔道整復師','Life is journey','bonds',"J's.treatment 三田院"].map(b=>(
+                <span key={b} style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.05em',border:`1px solid ${ac}`,color:ac,padding:'4px 10px',borderRadius:2}}>{b}</span>
+              ))}
+            </div>
+          </div>
+          <div style={{background:'#161616',borderLeft:'1px solid rgba(209,220,67,0.1)',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'3rem 2rem',gap:18}}>
+            <div style={{width:155,height:155,borderRadius:'50%',background:`linear-gradient(135deg,${gr},#0d4a31)`,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Noto Serif JP'",fontSize:50,fontWeight:800,color:'#fff',border:`3px solid ${ac}`,boxShadow:`0 0 0 8px rgba(209,220,67,0.07)`,flexShrink:0}}>遼</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8,width:'100%',maxWidth:230}}>
+              {[['2','法人代表'],['1','唯一の柔整師'],['5','発信媒体'],['∞','可能性']].map(([n,l])=>(
+                <div key={l} style={{background:'#1a1a1a',border:'1px solid rgba(209,220,67,0.12)',borderRadius:4,padding:'.7rem',textAlign:'center'}}>
+                  <div style={{fontFamily:'Montserrat',fontSize:20,fontWeight:900,fontStyle:'italic',color:ac}}>{n}</div>
+                  <div style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.08em',color:'rgba(255,255,255,0.35)',marginTop:3}}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{height:3,background:`linear-gradient(90deg,${gr},${ac},transparent)`}}/>
+      </div>
+
+      {/* PROFILE */}
+      <section id="profile" style={{padding:'4.5rem 2rem',background:'#151515'}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— PROFILE</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>代表プロフィール</h2>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:'3rem',alignItems:'start'}}>
+          <div style={{background:'#1a1a1a',border:'1px solid rgba(209,220,67,0.15)',borderRadius:4,padding:'1.75rem',position:'relative',overflow:'hidden'}}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${gr},${ac})`}}/>
+            <p style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.15em',color:ac,marginBottom:6}}>REPRESENTATIVE DIRECTOR</p>
+            <p style={{fontFamily:"'Noto Serif JP'",fontSize:21,fontWeight:700,color:'#fff',marginBottom:4}}>吉澤 遼馬</p>
+            <p style={{fontFamily:'Montserrat',fontSize:10,color:'rgba(255,255,255,0.28)',letterSpacing:'.1em',marginBottom:14}}>Yoshizawa Ryoma</p>
+            <div style={{height:1,background:'rgba(255,255,255,0.07)',margin:'10px 0'}}/>
+            {[['🏢','所属企業',<><div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>株式会社 Life is journey</div><div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:3}}>株式会社 bonds</div></>],
+              ['📜','資格・職種',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>柔道整復師 / 整形外科勤務</div>],
+              ['🏠','治療院',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>J's.treatment 三田院</div>],
+              ['🎙','Voicy',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>吉澤遼馬のヒザラジ！</div>],
+            ].map(([ic,label,val])=>(
+              <div key={label} style={{display:'flex',gap:9,marginBottom:9,alignItems:'flex-start'}}>
+                <div style={{width:25,height:25,background:gr,borderRadius:4,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:11}}>{ic}</div>
+                <div><div style={{fontSize:10,color:'rgba(255,255,255,0.38)'}}>{label}</div>{val}</div>
+              </div>
+            ))}
+          </div>
+          <div>
+            <div style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.3,color:'rgba(255,255,255,0.72)'}}>
+              <p style={{marginBottom:14}}>法人を経営しながら整形外科に勤務する、日本でも唯一無二の柔道整復師として活動しています。「柔道整復師の新しいキャリアモデルを描く」というビジョンのもと、臨床の最前線と経営の両立に挑戦し続けています。</p>
+              <p>J's.treatment 三田院では「No just treatment, It's learning」をコンセプトに、Sensory Firstのアプローチで患者さんの身体と向き合っています。</p>
+            </div>
+            <div style={{marginTop:18,borderLeft:`3px solid ${ac}`,padding:'12px 16px',background:'#1a1a1a',borderRadius:'0 4px 4px 0'}}>
+              <p style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.2em',color:ac,marginBottom:5}}>MISSION</p>
+              <p style={{fontFamily:"'Noto Serif JP'",fontSize:14,fontWeight:600,color:'#fff',lineHeight:1.9}}>「柔道整復師の新しいキャリアを描く」<br/>— 人と人を繋ぐ絆を大切に</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="service" style={{padding:'4.5rem 2rem',background:dk}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— SERVICES</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>事業内容</h2>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
+          {[['⚡',"J's.treatment 三田院",'柔道整復・施術サービス','Sensory Firstのアプローチで、痛みや不調の根本に働きかける治療を提供。完全予約制。'],
+            ['💼','株式会社 Life is journey','コンサルティング・経営支援','医療・治療院分野の経営コンサルティング。柔道整復師のキャリア形成・独立開業サポート。'],
+            ['🤝','株式会社 bonds','コミュニティ・絆づくり','「人と人を繋ぐ絆」をモットーに、同業者ネットワーク構築やセミナー・イベント企画運営を支援。'],
+          ].map(([ic,co,title,desc])=>(
+            <div key={title} style={{background:'#161616',border:'1px solid rgba(209,220,67,0.12)',borderRadius:4,padding:'1.5rem'}}>
+              <div style={{width:36,height:36,background:gr,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12,fontSize:17}}>{ic}</div>
+              <p style={{fontFamily:'Montserrat',fontSize:8,fontWeight:700,letterSpacing:'.12em',textTransform:'uppercase',color:ac,marginBottom:5}}>{co}</p>
+              <h3 style={{fontFamily:"'Noto Serif JP'",fontSize:14,fontWeight:600,color:'#fff',marginBottom:7,lineHeight:1.5}}>{title}</h3>
+              <p style={{fontSize:11,lineHeight:1.9,color:'rgba(255,255,255,0.48)'}}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* YOUTUBE */}
+      <section id="youtube" style={{padding:'4.5rem 2rem',background:'#151515'}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— YOUTUBE</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:22}}>J's.treatment 三田院</h2>
+        <div style={{borderRadius:6,overflow:'hidden',border:'1px solid rgba(209,220,67,0.15)',aspectRatio:'16/9',width:'100%'}}>
+          <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UCF0gFSQUSot6-E2Jvm4L1hw&autoplay=0&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowFullScreen title="YouTube" style={{width:'100%',height:'100%',border:'none',display:'block'}}/>
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:12,marginTop:12}}>
+          <span style={{display:'inline-flex',alignItems:'center',gap:6,background:'#ff0000',color:'#fff',fontFamily:'Montserrat',fontSize:11,fontWeight:700,padding:'5px 14px',borderRadius:3,whiteSpace:'nowrap'}}>▶ YOUTUBE</span>
+          <p style={{fontFamily:"'Noto Serif JP'",fontSize:12,color:'rgba(255,255,255,0.48)',lineHeight:1.8}}>「No just treatment, It's learning」— 治療の仕組みや根拠、臨床に基づく知識を発信中。</p>
+        </div>
+      </section>
+
+      {/* NEWS */}
+      <section id="news" style={{padding:'4.5rem 2rem',background:dk}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— NEWS</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:24}}>ニュース・お知らせ</h2>
+        {[['2025.05.01','VOICY','「ヒザラジ！」新エピソード配信 — 経営と臨床のリアルを語ります'],
+          ['2025.04.15','SEMINAR','柔道整復師のキャリア形成セミナー開催のお知らせ'],
+          ['2025.03.20','MEDIA','業界誌インタビュー掲載「法人経営×臨床 両立の秘訣」'],
+          ['2025.02.10','YOUTUBE',"J's.treatment 三田院 YouTubeチャンネル開設"],
+        ].map(([d,t,title])=>(
+          <div key={d} style={{display:'grid',gridTemplateColumns:'108px 78px 1fr',gap:14,alignItems:'center',padding:'1rem 0',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
+            <span style={{fontFamily:'Montserrat',fontSize:11,color:'rgba(255,255,255,0.28)',letterSpacing:'.05em'}}>{d}</span>
+            <span style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',border:`1px solid ${ac}`,color:ac,padding:'3px 7px',borderRadius:2,textAlign:'center'}}>{t}</span>
+            <span style={{fontFamily:"'Noto Serif JP'",fontSize:12,color:'rgba(255,255,255,0.72)',lineHeight:1.7}}>{title}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* SNS SLIDER */}
+      <section id="sns" style={{padding:'4.5rem 2rem',background:'#151515',overflow:'hidden'}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— SOCIAL MEDIA</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:24}}>SNS・発信チャンネル</h2>
+        <div style={{overflow:'hidden'}}>
+          <div style={{display:'flex',gap,transition:'transform .5s cubic-bezier(.4,0,.2,1)',transform:`translateX(${offset}px)`}}>
+            {snsData.map((s,i)=>(
+              <div key={s.id} style={{flexShrink:0,width:cardW,background:'#1a1a1a',border:`1px solid ${i===snsCur?ac:'rgba(255,255,255,0.07)'}`,borderRadius:6,overflow:'hidden',opacity:i===snsCur?1:0.42,transition:'opacity .3s,border-color .3s'}}>
+                <div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 14px',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
+                  <div style={{width:30,height:30,borderRadius:7,background:s.bg,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,color:'#fff',fontSize:13,fontWeight:700}}>
+                    {s.id==='x'?'𝕏':s.id==='ig'?'📷':s.id==='fb'?'f':'🎙'}
+                  </div>
+                  <div>
+                    <div style={{fontFamily:"'Noto Serif JP'",fontSize:12,fontWeight:500,color:'#fff'}}>{s.name}</div>
+                    <div style={{fontFamily:'Montserrat',fontSize:9,color:'rgba(255,255,255,0.38)',letterSpacing:'.04em'}}>{s.handle}</div>
+                  </div>
+                </div>
+                <div style={{height:265,overflow:'hidden',background:'#161616'}}>
+                  {s.id==='x'?(
+                    <div style={{height:265,overflowY:'auto',padding:10,display:'flex',flexDirection:'column',gap:7}}>
+                      {s.posts.map(p=>(
+                        <div key={p.date} style={{background:'#1e1e1e',border:'1px solid rgba(255,255,255,0.05)',borderRadius:5,padding:'8px 11px'}}>
+                          <div style={{fontFamily:'Montserrat',fontSize:9,color:ac,marginBottom:3}}>{p.date}</div>
+                          <div style={{fontFamily:"'Noto Serif JP'",fontSize:11,color:'rgba(255,255,255,0.68)',lineHeight:1.8}}>{p.text}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ):(
+                    <iframe src={s.embedSrc} scrolling="no" allowTransparency style={{width:'100%',height:'100%',border:'none',display:'block'}} title={s.name}/>
+                  )}
+                </div>
+                <div style={{padding:'9px 14px',borderTop:'1px solid rgba(255,255,255,0.06)',textAlign:'right'}}>
+                  <a href={s.url} target="_blank" rel="noreferrer" style={{fontFamily:'Montserrat',fontSize:11,fontWeight:700,color:ac,letterSpacing:'.05em'}}>{s.label} ↗</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,marginTop:16}}>
+          <button style={{width:32,height:32,borderRadius:'50%',border:`1px solid rgba(209,220,67,0.3)`,background:'transparent',cursor:'pointer',color:ac,fontSize:15,display:'flex',alignItems:'center',justifyContent:'center'}} onClick={()=>resetTimer(snsCur-1)}>‹</button>
+          <div style={{display:'flex',gap:7}}>
+            {snsData.map((_,i)=>(
+              <button key={i} onClick={()=>resetTimer(i)} style={{height:4,width:i===snsCur?22:6,borderRadius:2,border:'none',cursor:'pointer',transition:'all .25s',background:i===snsCur?ac:'rgba(255,255,255,0.18)'}}/>
+            ))}
+          </div>
+          <button style={{width:32,height:32,borderRadius:'50%',border:`1px solid rgba(209,220,67,0.3)`,background:'transparent',cursor:'pointer',color:ac,fontSize:15,display:'flex',alignItems:'center',justifyContent:'center'}} onClick={()=>resetTimer(snsCur+1)}>›</button>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" style={{padding:'4.5rem 2rem',background:'#161616'}}>
+        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— CONTACT</p>
+        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>お問い合わせ</h2>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1.2fr',gap:'4rem',alignItems:'start'}}>
+          <div>
+            <p style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.2,color:'rgba(255,255,255,0.62)',marginBottom:18}}>事業に関するご相談・講演依頼・取材・コラボレーション等、お気軽にご連絡ください。</p>
+            {[['🏢','株式会社 Life is journey / 株式会社 bonds'],['📍','東京都港区芝3丁目17番14号 中野第5ビル6階'],['✉️','お問い合わせフォームよりご連絡ください']].map(([ic,t])=>(
+              <div key={t} style={{display:'flex',alignItems:'flex-start',gap:10,marginBottom:10,fontSize:12,color:'rgba(255,255,255,0.55)',lineHeight:1.7}}>{ic} {t}</div>
+            ))}
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:10}}>
+            {[['お名前','text','山田 太郎'],['メールアドレス','email','example@email.com'],['件名','text','ご相談内容の件名']].map(([l,t,ph])=>(
+              <div key={l} style={{display:'flex',flexDirection:'column',gap:4}}>
+                <label style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.45)'}}>{l}</label>
+                <input type={t} placeholder={ph} style={{padding:'9px 13px',fontSize:12,fontFamily:'inherit',border:'1px solid rgba(255,255,255,0.1)',borderRadius:3,background:'#1a1a1a',color:'#fff',outline:'none'}}/>
+              </div>
+            ))}
+            <div style={{display:'flex',flexDirection:'column',gap:4}}>
+              <label style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.45)'}}>メッセージ</label>
+              <textarea placeholder="お問い合わせ内容をご記入ください" style={{padding:'9px 13px',fontSize:12,fontFamily:'inherit',border:'1px solid rgba(255,255,255,0.1)',borderRadius:3,background:'#1a1a1a',color:'#fff',outline:'none',height:95,resize:'vertical'}}/>
+            </div>
+            <button style={{padding:'11px 26px',background:ac,color:dk,border:'none',borderRadius:3,fontFamily:'Montserrat',fontSize:11,fontWeight:900,letterSpacing:'.1em',cursor:'pointer',alignSelf:'flex-start'}}>SEND MESSAGE →</button>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{background:'#0a0a0a',borderTop:`3px solid ${ac}`,padding:'2.5rem 2rem',textAlign:'center'}}>
+        <p style={{fontFamily:'Montserrat',fontSize:17,fontWeight:900,fontStyle:'italic',color:ac,marginBottom:12}}>YOSHIZAWA RYOMA</p>
+        <div style={{display:'flex',justifyContent:'center',flexWrap:'wrap',gap:'1.4rem',marginBottom:12}}>
+          {['PROFILE','SERVICES','YOUTUBE','NEWS','SNS','CONTACT'].map(t=>(
+            <a key={t} href="#" style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.28)'}}>{t}</a>
+          ))}
+        </div>
+        <p style={{fontFamily:'Montserrat',fontSize:10,color:'rgba(255,255,255,0.18)',letterSpacing:'.06em'}}>© 2025 Yoshizawa Ryoma. All Rights Reserved.</p>
+      </footer>
+    </div>
+  );
+}
