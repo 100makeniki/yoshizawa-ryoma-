@@ -9,142 +9,110 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ac:#b8965a;
-  --ac2:#d4b07a;
-  --navy:#1a3a5c;
-  --green:#1f865c;
-  --paper:#f7f4ef;
-  --paper2:#ede9e1;
-  --white:#ffffff;
-  --ink:#0e0e0e;
-  --ink2:#3a3a3a;
-  --ink3:#7a7a7a;
+  --ac:#b8965a;--ac2:#d4b07a;--navy:#1a3a5c;
+  --paper:#f7f4ef;--paper2:#ede9e1;
+  --white:#ffffff;--ink:#0e0e0e;--ink2:#3a3a3a;--ink3:#7a7a7a;
   --border:rgba(14,14,14,0.1);
 }
 body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
 a{text-decoration:none;}
 
 /* NAV */
-nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,0.97);
-  backdrop-filter:blur(12px);
-  border-bottom:0.5px solid var(--border);
-  padding:0 3rem;
-  display:flex;align-items:center;justify-content:space-between;
-  height:64px;
-}
-.nav-logo{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;color:var(--navy);letter-spacing:.08em;}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--navy);letter-spacing:.08em;}
 .nav-logo span{color:var(--ac);}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink2);transition:color .2s;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ink2);transition:color .2s;}
 .nav-links a:hover{color:var(--navy);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s;}
+.nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);padding:1.5rem 2rem;z-index:99;}
+.nav-mobile.open{display:block;}
+.nav-mobile ul{list-style:none;display:flex;flex-direction:column;gap:1.2rem;}
+.nav-mobile a{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--navy);}
 
 /* HERO */
-.hero{display:grid;grid-template-columns:1fr 1fr;height:580px;}
-.hero-left{background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem;}
-.hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--ac2);margin-bottom:16px;}
-.hero-name{font-family:'Montserrat',sans-serif;font-size:54px;font-weight:900;font-style:italic;line-height:1.05;color:#fff;margin-bottom:8px;white-space:nowrap;}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px;}
+.hero-left{background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;}
+.hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--ac2);margin-bottom:14px;}
+.hero-name{font-family:'Montserrat',sans-serif;font-size:50px;font-weight:900;font-style:italic;line-height:1.05;color:#fff;margin-bottom:8px;}
 .hero-name span{color:var(--ac2);}
-.hero-name-jp{font-family:'Noto Serif JP',serif;font-size:16px;letter-spacing:.15em;color:rgba(255,255,255,0.4);margin-bottom:24px;}
-.hero-tagline{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.2;color:rgba(255,255,255,0.82);margin-bottom:28px;max-width:340px;}
-.hero-badges{display:flex;flex-wrap:wrap;gap:8px;}
-.badge{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;border:0.5px solid rgba(184,150,90,0.6);color:var(--ac2);padding:5px 12px;border-radius:2px;}
+.hero-name-jp{font-family:'Noto Serif JP',serif;font-size:15px;letter-spacing:.15em;color:rgba(255,255,255,0.4);margin-bottom:22px;}
+.hero-tagline{font-family:'Noto Serif JP',serif;font-size:15px;line-height:2.2;color:rgba(255,255,255,0.82);margin-bottom:26px;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:7px;}
+.badge{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;border:0.5px solid rgba(184,150,90,0.6);color:var(--ac2);padding:5px 11px;border-radius:2px;}
 .hero-right{background:var(--paper2);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem 2rem;gap:20px;}
-.hero-avatar{width:170px;height:170px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:56px;font-weight:800;color:#fff;border:4px solid var(--ac);box-shadow:0 0 0 10px rgba(184,150,90,0.12);flex-shrink:0;}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:250px;}
-.stat-card{background:var(--white);border:0.5px solid var(--border);border-radius:6px;padding:.85rem;text-align:center;}
-.stat-num{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;font-style:italic;color:var(--navy);}
+.hero-avatar{width:160px;height:160px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:52px;font-weight:800;color:#fff;border:4px solid var(--ac);box-shadow:0 0 0 10px rgba(184,150,90,0.12);flex-shrink:0;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:240px;}
+.stat-card{background:var(--white);border:0.5px solid var(--border);border-radius:6px;padding:.75rem;text-align:center;}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;font-style:italic;color:var(--navy);}
 .stat-label{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink3);margin-top:3px;}
 .hero-bar{height:3px;background:linear-gradient(90deg,var(--navy),var(--ac),transparent);}
 
 /* SECTIONS */
-section{padding:5.5rem 3rem;}
+section{padding:5rem 2.5rem;}
 .sec-eye{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
 .sec-eye::after{content:'';width:32px;height:0.5px;background:var(--ac);}
-.sec-title{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:600;color:var(--navy);margin-bottom:36px;}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:600;color:var(--navy);margin-bottom:32px;}
 
 /* PROFILE */
 #profile{background:var(--white);}
-.profile-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:4rem;align-items:start;}
-.profile-card{background:var(--paper);border:0.5px solid var(--border);border-radius:8px;padding:2rem;position:relative;overflow:hidden;}
+.profile-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:3.5rem;align-items:start;}
+.profile-card{background:var(--paper);border:0.5px solid var(--border);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;}
 .profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--ac));}
 .p-role{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;color:var(--ac);margin-bottom:6px;}
-.p-name{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.p-name-en{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink3);letter-spacing:.1em;margin-bottom:16px;}
-.p-divider{height:0.5px;background:var(--border);margin:12px 0;}
-.p-item{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
-.p-icon{width:28px;height:28px;background:var(--navy);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;}
+.p-name{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.p-name-en{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--ink3);letter-spacing:.1em;margin-bottom:14px;}
+.p-divider{height:0.5px;background:var(--border);margin:10px 0;}
+.p-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+.p-icon{width:26px;height:26px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;}
 .p-item-label{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink3);}
 .p-item-val{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);font-weight:500;margin-top:2px;}
-.profile-bio{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.4;color:var(--ink2);}
-.profile-bio p{margin-bottom:16px;}
-.phil{margin-top:24px;border-left:3px solid var(--ac);padding:14px 20px;background:var(--paper);border-radius:0 6px 6px 0;}
-.phil-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--ac);margin-bottom:6px;}
-.phil-text{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--navy);line-height:2;}
+.profile-bio{font-family:'Noto Serif JP',serif;font-size:15px;line-height:2.3;color:var(--ink2);}
+.profile-bio p{margin-bottom:14px;}
+.phil{margin-top:20px;border-left:3px solid var(--ac);padding:12px 18px;background:var(--paper);border-radius:0 6px 6px 0;}
+.phil-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--ac);margin-bottom:5px;}
+.phil-text{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:600;color:var(--navy);line-height:2;}
 
 /* SERVICES */
 #service{background:var(--paper);}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.svc-card{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:2rem;transition:border-color .2s,transform .2s;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.svc-card{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:1.75rem;transition:border-color .2s,transform .2s;}
 .svc-card:hover{border-color:var(--navy);transform:translateY(-3px);}
-.svc-icon{width:44px;height:44px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px;}
-.svc-co{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:6px;}
-.svc-title{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.5;}
+.svc-icon{width:42px;height:42px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:19px;}
+.svc-co{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:5px;}
+.svc-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.5;}
 .svc-desc{font-family:'DM Sans',sans-serif;font-size:14px;line-height:2;color:var(--ink3);}
 
 /* YOUTUBE */
 #youtube{background:var(--white);}
-.yt-wrap{border-radius:10px;overflow:hidden;border:0.5px solid var(--border);aspect-ratio:16/9;width:100%;margin-bottom:16px;}
+.yt-wrap{border-radius:10px;overflow:hidden;border:0.5px solid var(--border);aspect-ratio:16/9;width:100%;margin-bottom:14px;}
 .yt-wrap iframe{width:100%;height:100%;display:block;border:none;}
-.yt-meta{display:flex;align-items:center;gap:14px;}
-.yt-badge{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:6px 16px;border-radius:4px;white-space:nowrap;}
-.yt-desc{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--ink3);line-height:1.9;}
+.yt-meta{display:flex;align-items:center;gap:12px;}
+.yt-badge{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:5px 14px;border-radius:4px;white-space:nowrap;}
+.yt-desc{font-family:'Noto Serif JP',serif;font-size:14px;color:var(--ink3);line-height:1.9;}
 
 /* NEWS */
 #news{background:var(--navy);}
 #news .sec-eye{color:var(--ac2);}
 #news .sec-eye::after{background:var(--ac2);}
 #news .sec-title{color:#fff;}
-.news-item{display:grid;grid-template-columns:120px 90px 1fr;gap:16px;align-items:center;padding:1.3rem 0;border-bottom:0.5px solid rgba(255,255,255,0.1);}
+.news-item{display:grid;grid-template-columns:120px 88px 1fr;gap:16px;align-items:center;padding:1.2rem 0;border-bottom:0.5px solid rgba(255,255,255,0.1);}
 .news-date{font-family:'Montserrat',sans-serif;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:.05em;}
-.news-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;border:0.5px solid var(--ac);color:var(--ac2);padding:3px 8px;border-radius:2px;text-align:center;}
-.news-title{font-family:'Noto Serif JP',serif;font-size:15px;color:rgba(255,255,255,0.82);line-height:1.7;}
+.news-tag{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;border:0.5px solid var(--ac);color:var(--ac2);padding:3px 7px;border-radius:2px;text-align:center;}
+.news-title{font-family:'Noto Serif JP',serif;font-size:14px;color:rgba(255,255,255,0.82);line-height:1.7;}
 
-/* =====================
-   SNS SLIDER — 中央固定・両サイドにのぞく
-   ===================== */
+/* SNS SLIDER */
 #sns{background:var(--paper2);overflow:hidden;}
-.sns-stage{
-  position:relative;
-  width:100%;
-  /* 中央のカードを見せて、両サイドをのぞかせる */
-  padding:0;
-  overflow:hidden;
-}
-.sns-track{
-  display:flex;
-  gap:24px;
-  transition:transform .6s cubic-bezier(.4,0,.2,1);
-  /* 初期位置はJSで設定 */
-}
+.sns-stage{position:relative;width:100%;overflow:hidden;}
+.sns-track{display:flex;gap:20px;transition:transform .6s cubic-bezier(.4,0,.2,1);}
 .sns-card{
-  flex-shrink:0;
-  width:560px; /* カード幅 */
-  background:var(--white);
-  border:0.5px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
-  transition:opacity .4s, transform .4s, box-shadow .4s;
-  opacity:0.45;
-  transform:scale(0.95);
+  flex-shrink:0;width:560px;
+  background:var(--white);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;
+  opacity:0.45;transform:scale(0.96);
+  transition:opacity .4s,transform .4s,box-shadow .4s;
 }
-.sns-card.active{
-  opacity:1;
-  transform:scale(1);
-  box-shadow:0 8px 40px rgba(26,58,92,0.12);
-  border-color:rgba(26,58,92,0.3);
-}
+.sns-card.active{opacity:1;transform:scale(1);box-shadow:0 8px 40px rgba(26,58,92,0.12);border-color:rgba(26,58,92,0.25);}
 .sns-card-header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:0.5px solid var(--border);}
 .sns-platform-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:16px;font-weight:700;}
 .sns-card-name{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
@@ -156,8 +124,8 @@ section{padding:5.5rem 3rem;}
 .x-post-date{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--ac);margin-bottom:5px;}
 .x-post-text{font-family:'Noto Serif JP',serif;font-size:14px;color:var(--ink2);line-height:1.9;}
 .sns-card-footer{padding:12px 18px;border-top:0.5px solid var(--border);text-align:right;}
-.sns-card-footer a{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.05em;}
-.sns-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+.sns-card-footer a{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--navy);}
+.sns-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px;}
 .sns-arrow{width:40px;height:40px;border-radius:50%;border:0.5px solid var(--border);background:var(--white);cursor:pointer;font-size:18px;color:var(--navy);display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .sns-arrow:hover{border-color:var(--navy);background:var(--navy);color:#fff;}
 .sns-dots{display:flex;gap:8px;align-items:center;}
@@ -167,24 +135,84 @@ section{padding:5.5rem 3rem;}
 /* CONTACT */
 #contact{background:var(--white);}
 .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start;}
-.contact-text{font-family:'Noto Serif JP',serif;font-size:16px;line-height:2.4;color:var(--ink2);margin-bottom:24px;}
-.contact-info{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink2);line-height:1.8;}
-.contact-form{display:flex;flex-direction:column;gap:14px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
+.contact-text{font-family:'Noto Serif JP',serif;font-size:15px;line-height:2.3;color:var(--ink2);margin-bottom:20px;}
+.contact-info{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink2);line-height:1.8;}
+.contact-form{display:flex;flex-direction:column;gap:12px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
 .form-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ink3);}
-.form-input,.form-textarea{padding:12px 14px;font-size:15px;font-family:inherit;border:0.5px solid var(--border);border-radius:4px;background:var(--paper);color:var(--ink);outline:none;transition:border-color .2s;}
+.form-input,.form-textarea{padding:11px 14px;font-size:14px;font-family:inherit;border:0.5px solid var(--border);border-radius:4px;background:var(--paper);color:var(--ink);outline:none;transition:border-color .2s;width:100%;}
 .form-input:focus,.form-textarea:focus{border-color:var(--navy);}
-.form-textarea{height:120px;resize:vertical;}
-.form-submit{padding:14px 32px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;cursor:pointer;align-self:flex-start;transition:background .2s;}
+.form-textarea{height:110px;resize:vertical;}
+.form-submit{padding:13px 28px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;cursor:pointer;align-self:flex-start;transition:background .2s;}
 .form-submit:hover{background:#2d5a8e;}
 
 /* FOOTER */
-footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;text-align:center;}
-.footer-logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:14px;}
-.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:2rem;margin-bottom:14px;}
-.footer-links a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.35);}
+footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 2rem;text-align:center;}
+.footer-logo{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:600;color:#fff;margin-bottom:12px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:12px;}
+.footer-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.32);}
 .footer-links a:hover{color:var(--ac2);}
-.footer-copy{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.25);}
+.footer-copy{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.22);}
+
+/* =====================
+   RESPONSIVE — スマホ対応
+   ===================== */
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* HERO — 縦積み */
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 3rem 1.5rem; }
+  .hero-name { font-size: 36px; white-space: normal; }
+  .hero-right { padding: 2.5rem 1.5rem; }
+  .hero-avatar { width: 130px; height: 130px; font-size: 42px; }
+  .stats-grid { max-width: 100%; }
+
+  /* SECTIONS */
+  section { padding: 3.5rem 1.5rem; }
+  .sec-title { font-size: 24px; margin-bottom: 24px; }
+
+  /* PROFILE — 縦積み */
+  .profile-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .profile-bio { font-size: 14px; }
+  .phil-text { font-size: 15px; }
+
+  /* SERVICES — 1列 */
+  .svc-grid { grid-template-columns: 1fr; gap: 12px; }
+  .svc-title { font-size: 16px; }
+  .svc-desc { font-size: 13px; }
+
+  /* YOUTUBE */
+  .yt-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .yt-desc { font-size: 13px; }
+
+  /* NEWS */
+  .news-item { grid-template-columns: 1fr; gap: 6px; padding: 1rem 0; }
+  .news-date { font-size: 11px; }
+  .news-title { font-size: 13px; }
+
+  /* SNS — カード幅をスマホに合わせる */
+  .sns-card { width: calc(100vw - 3rem); }
+  .sns-card-name { font-size: 13px; }
+  .x-post-text { font-size: 13px; }
+
+  /* CONTACT — 縦積み */
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-text { font-size: 14px; }
+  .contact-info { font-size: 13px; }
+  .form-submit { width: 100%; text-align: center; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: 30px; }
+  nav { padding: 0 1rem; }
+  section { padding: 3rem 1rem; }
+  .hero-left { padding: 2.5rem 1rem; }
+  .hero-right { padding: 2rem 1rem; }
+}
 </style>
 </head>
 <body>
@@ -200,7 +228,20 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
     <li><a href="#sns">SNS</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="#profile" onclick="closeMenu()">PROFILE</a></li>
+    <li><a href="#service" onclick="closeMenu()">SERVICES</a></li>
+    <li><a href="#youtube" onclick="closeMenu()">YOUTUBE</a></li>
+    <li><a href="#news" onclick="closeMenu()">NEWS</a></li>
+    <li><a href="#sns" onclick="closeMenu()">SNS</a></li>
+    <li><a href="#contact" onclick="closeMenu()">CONTACT</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -238,22 +279,10 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
       <p class="p-name">吉澤 遼馬</p>
       <p class="p-name-en">Yoshizawa Ryoma</p>
       <div class="p-divider"></div>
-      <div class="p-item">
-        <div class="p-icon">🏢</div>
-        <div><div class="p-item-label">所属企業</div><div class="p-item-val">株式会社 Life is journey</div><div class="p-item-val" style="margin-top:3px">株式会社 bonds</div></div>
-      </div>
-      <div class="p-item">
-        <div class="p-icon">📜</div>
-        <div><div class="p-item-label">資格・職種</div><div class="p-item-val">柔道整復師 / 整形外科勤務</div></div>
-      </div>
-      <div class="p-item">
-        <div class="p-icon">🏠</div>
-        <div><div class="p-item-label">治療院</div><div class="p-item-val">J's.treatment 三田院</div></div>
-      </div>
-      <div class="p-item">
-        <div class="p-icon">🎙</div>
-        <div><div class="p-item-label">Voicy</div><div class="p-item-val">吉澤遼馬のヒザラジ！</div></div>
-      </div>
+      <div class="p-item"><div class="p-icon">🏢</div><div><div class="p-item-label">所属企業</div><div class="p-item-val">株式会社 Life is journey</div><div class="p-item-val" style="margin-top:3px">株式会社 bonds</div></div></div>
+      <div class="p-item"><div class="p-icon">📜</div><div><div class="p-item-label">資格・職種</div><div class="p-item-val">柔道整復師 / 整形外科勤務</div></div></div>
+      <div class="p-item"><div class="p-icon">🏠</div><div><div class="p-item-label">治療院</div><div class="p-item-val">J's.treatment 三田院</div></div></div>
+      <div class="p-item"><div class="p-icon">🎙</div><div><div class="p-item-label">Voicy</div><div class="p-item-val">吉澤遼馬のヒザラジ！</div></div></div>
     </div>
     <div>
       <div class="profile-bio">
@@ -273,24 +302,9 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
   <p class="sec-eye">SERVICES</p>
   <h2 class="sec-title">事業内容</h2>
   <div class="svc-grid">
-    <div class="svc-card">
-      <div class="svc-icon">⚡</div>
-      <p class="svc-co">J's.treatment 三田院</p>
-      <h3 class="svc-title">柔道整復・施術サービス</h3>
-      <p class="svc-desc">Sensory Firstのアプローチで、痛みや不調の根本に働きかける治療を提供。完全予約制。</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-icon">💼</div>
-      <p class="svc-co">株式会社 Life is journey</p>
-      <h3 class="svc-title">コンサルティング・経営支援</h3>
-      <p class="svc-desc">医療・治療院分野の経営コンサルティング。柔道整復師のキャリア形成・独立開業サポート。</p>
-    </div>
-    <div class="svc-card">
-      <div class="svc-icon">🤝</div>
-      <p class="svc-co">株式会社 bonds</p>
-      <h3 class="svc-title">コミュニティ・絆づくり</h3>
-      <p class="svc-desc">「人と人を繋ぐ絆」をモットーに、同業者ネットワーク構築やセミナー・イベント企画運営を支援。</p>
-    </div>
+    <div class="svc-card"><div class="svc-icon">⚡</div><p class="svc-co">J's.treatment 三田院</p><h3 class="svc-title">柔道整復・施術サービス</h3><p class="svc-desc">Sensory Firstのアプローチで、痛みや不調の根本に働きかける治療を提供。完全予約制。</p></div>
+    <div class="svc-card"><div class="svc-icon">💼</div><p class="svc-co">株式会社 Life is journey</p><h3 class="svc-title">コンサルティング・経営支援</h3><p class="svc-desc">医療・治療院分野の経営コンサルティング。柔道整復師のキャリア形成・独立開業サポート。</p></div>
+    <div class="svc-card"><div class="svc-icon">🤝</div><p class="svc-co">株式会社 bonds</p><h3 class="svc-title">コミュニティ・絆づくり</h3><p class="svc-desc">「人と人を繋ぐ絆」をモットーに、同業者ネットワーク構築やセミナー・イベント企画運営を支援。</p></div>
   </div>
 </section>
 
@@ -299,9 +313,7 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
   <p class="sec-eye">YOUTUBE</p>
   <h2 class="sec-title">J's.treatment 三田院 チャンネル</h2>
   <div class="yt-wrap">
-    <iframe src="https://www.youtube.com/embed/pxppQbeMzoE"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen title="YouTube"></iframe>
+    <iframe src="https://www.youtube.com/embed/pxppQbeMzoE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube"></iframe>
   </div>
   <div class="yt-meta">
     <span class="yt-badge">▶ YOUTUBE</span>
@@ -325,53 +337,29 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
   <h2 class="sec-title">SNS・発信チャンネル</h2>
   <div class="sns-stage">
     <div class="sns-track" id="snsTrack">
-      <!-- X -->
       <div class="sns-card" data-index="0">
-        <div class="sns-card-header">
-          <div class="sns-platform-icon" style="background:#000">𝕏</div>
-          <div><div class="sns-card-name">吉澤遼馬</div><div class="sns-card-handle">@Knee_geek</div></div>
-        </div>
-        <div class="sns-card-body">
-          <div class="x-mock">
-            <div class="x-post"><div class="x-post-date">2025.05.20</div><div class="x-post-text">法人経営×整形外科勤務、今日も現場からリアルをお届けします。柔道整復師の新しいキャリアについて考えていること。</div></div>
-            <div class="x-post"><div class="x-post-date">2025.05.18</div><div class="x-post-text">膝の痛みに悩む患者さんが「Sensory First」のアプローチで変わっていく瞬間が一番好き。</div></div>
-            <div class="x-post"><div class="x-post-date">2025.05.15</div><div class="x-post-text">経営と臨床、どちらも手を抜けない。だからこそ面白い。#柔道整復師 #ヒザラジ</div></div>
-            <div class="x-post"><div class="x-post-date">2025.05.12</div><div class="x-post-text">今日のヒザラジ更新しました。「なぜ柔道整復師が会社を作るのか」について話しています。</div></div>
-          </div>
-        </div>
+        <div class="sns-card-header"><div class="sns-platform-icon" style="background:#000">𝕏</div><div><div class="sns-card-name">吉澤遼馬</div><div class="sns-card-handle">@Knee_geek</div></div></div>
+        <div class="sns-card-body"><div class="x-mock">
+          <div class="x-post"><div class="x-post-date">2025.05.20</div><div class="x-post-text">法人経営×整形外科勤務、今日も現場からリアルをお届けします。柔道整復師の新しいキャリアについて考えていること。</div></div>
+          <div class="x-post"><div class="x-post-date">2025.05.18</div><div class="x-post-text">膝の痛みに悩む患者さんが「Sensory First」のアプローチで変わっていく瞬間が一番好き。</div></div>
+          <div class="x-post"><div class="x-post-date">2025.05.15</div><div class="x-post-text">経営と臨床、どちらも手を抜けない。だからこそ面白い。#柔道整復師 #ヒザラジ</div></div>
+          <div class="x-post"><div class="x-post-date">2025.05.12</div><div class="x-post-text">今日のヒザラジ更新しました。「なぜ柔道整復師が会社を作るのか」について話しています。</div></div>
+        </div></div>
         <div class="sns-card-footer"><a href="https://x.com/Knee_geek" target="_blank">Xで見る ↗</a></div>
       </div>
-      <!-- Instagram -->
       <div class="sns-card" data-index="1">
-        <div class="sns-card-header">
-          <div class="sns-platform-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)">📷</div>
-          <div><div class="sns-card-name">吉澤遼馬（セラピスト）</div><div class="sns-card-handle">@ryoma_yoshi_therapist</div></div>
-        </div>
-        <div class="sns-card-body">
-          <iframe src="https://www.instagram.com/ryoma_yoshi_therapist/embed" scrolling="no" allowtransparency="true" title="Instagram"></iframe>
-        </div>
+        <div class="sns-card-header"><div class="sns-platform-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)">📷</div><div><div class="sns-card-name">吉澤遼馬（セラピスト）</div><div class="sns-card-handle">@ryoma_yoshi_therapist</div></div></div>
+        <div class="sns-card-body"><iframe src="https://www.instagram.com/ryoma_yoshi_therapist/embed" scrolling="no" allowtransparency="true" title="Instagram"></iframe></div>
         <div class="sns-card-footer"><a href="https://www.instagram.com/ryoma_yoshi_therapist/" target="_blank">Instagramで見る ↗</a></div>
       </div>
-      <!-- Facebook -->
       <div class="sns-card" data-index="2">
-        <div class="sns-card-header">
-          <div class="sns-platform-icon" style="background:#1877f2;font-family:serif;font-weight:900">f</div>
-          <div><div class="sns-card-name">Ryoma Yoshizawa</div><div class="sns-card-handle">ryoma.yoshizawa1213</div></div>
-        </div>
-        <div class="sns-card-body">
-          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=560&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" title="Facebook"></iframe>
-        </div>
+        <div class="sns-card-header"><div class="sns-platform-icon" style="background:#1877f2;font-family:serif;font-weight:900">f</div><div><div class="sns-card-name">Ryoma Yoshizawa</div><div class="sns-card-handle">ryoma.yoshizawa1213</div></div></div>
+        <div class="sns-card-body"><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=560&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" title="Facebook"></iframe></div>
         <div class="sns-card-footer"><a href="https://www.facebook.com/ryoma.yoshizawa1213" target="_blank">Facebookで見る ↗</a></div>
       </div>
-      <!-- Voicy -->
       <div class="sns-card" data-index="3">
-        <div class="sns-card-header">
-          <div class="sns-platform-icon" style="background:#00c4a7">🎙</div>
-          <div><div class="sns-card-name">吉澤遼馬のヒザラジ！</div><div class="sns-card-handle">voicy.jp/channel/4526</div></div>
-        </div>
-        <div class="sns-card-body">
-          <iframe src="https://voicy.jp/channel/4526/embed" scrolling="no" title="Voicy"></iframe>
-        </div>
+        <div class="sns-card-header"><div class="sns-platform-icon" style="background:#00c4a7">🎙</div><div><div class="sns-card-name">吉澤遼馬のヒザラジ！</div><div class="sns-card-handle">voicy.jp/channel/4526</div></div></div>
+        <div class="sns-card-body"><iframe src="https://voicy.jp/channel/4526/embed" scrolling="no" title="Voicy"></iframe></div>
         <div class="sns-card-footer"><a href="https://voicy.jp/channel/4526" target="_blank">Voicyで聴く ↗</a></div>
       </div>
     </div>
@@ -413,59 +401,50 @@ footer{background:var(--ink);border-top:3px solid var(--ac);padding:2.5rem 3rem;
 <footer>
   <p class="footer-logo">吉澤 遼馬</p>
   <div class="footer-links">
-    <a href="#profile">PROFILE</a>
-    <a href="#service">SERVICES</a>
-    <a href="#youtube">YOUTUBE</a>
-    <a href="#news">NEWS</a>
-    <a href="#sns">SNS</a>
-    <a href="#contact">CONTACT</a>
+    <a href="#profile">PROFILE</a><a href="#service">SERVICES</a><a href="#youtube">YOUTUBE</a>
+    <a href="#news">NEWS</a><a href="#sns">SNS</a><a href="#contact">CONTACT</a>
   </div>
   <p class="footer-copy">© 2025 Yoshizawa Ryoma. All Rights Reserved.</p>
 </footer>
 
 <script>
+// ハンバーガーメニュー
+function toggleMenu(){
+  document.getElementById('navMobile').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('navMobile').classList.remove('open');
+}
+
+// SNS スライダー
 (function(){
-  const track   = document.getElementById('snsTrack');
-  const dots    = document.querySelectorAll('.sns-dot');
-  const cards   = document.querySelectorAll('.sns-card');
-  const stage   = document.querySelector('.sns-stage');
-  const N       = 4;
-  const GAP     = 24;
-  let cur       = 0;
-  let timer;
+  const track = document.getElementById('snsTrack');
+  const dots  = document.querySelectorAll('.sns-dot');
+  const cards = document.querySelectorAll('.sns-card');
+  const stage = document.querySelector('.sns-stage');
+  const N=4, GAP=20;
+  let cur=0, timer;
 
-  function cardW(){ return cards[0].offsetWidth; }
-  function stageW(){ return stage.offsetWidth; }
-
-  /* 中央に表示するためのオフセット計算 */
-  function calcOffset(idx){
-    const cw = cardW();
-    const sw = stageW();
-    /* idx番カードの左端を、ステージ中央に合わせる */
-    return (sw / 2) - (cw / 2) - idx * (cw + GAP);
-  }
+  function cw(){ return cards[0].offsetWidth; }
+  function sw(){ return stage.offsetWidth; }
+  function calcOffset(idx){ return (sw()/2)-(cw()/2)-idx*(cw()+GAP); }
 
   function goTo(i){
-    cur = ((i % N) + N) % N;
-    track.style.transform = `translateX(${calcOffset(cur)}px)`;
-    dots.forEach((d, j) => {
-      d.classList.toggle('active', j === cur);
-      d.style.width = j === cur ? '24px' : '8px';
-    });
-    cards.forEach((c, j) => c.classList.toggle('active', j === cur));
+    cur=((i%N)+N)%N;
+    track.style.transform=`translateX(${calcOffset(cur)}px)`;
+    dots.forEach((d,j)=>{ d.classList.toggle('active',j===cur); d.style.width=j===cur?'24px':'8px'; });
+    cards.forEach((c,j)=>c.classList.toggle('active',j===cur));
   }
 
-  function start(){ timer = setInterval(() => goTo(cur + 1), 4500); }
-  function stop(){  clearInterval(timer); }
+  function start(){ timer=setInterval(()=>goTo(cur+1),4500); }
+  function stop(){ clearInterval(timer); }
 
-  document.getElementById('snsR').onclick = () => { stop(); goTo(cur + 1); start(); };
-  document.getElementById('snsL').onclick = () => { stop(); goTo(cur - 1); start(); };
-  dots.forEach((d, i) => d.addEventListener('click', () => { stop(); goTo(i); start(); }));
+  document.getElementById('snsR').onclick=()=>{ stop(); goTo(cur+1); start(); };
+  document.getElementById('snsL').onclick=()=>{ stop(); goTo(cur-1); start(); };
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{ stop(); goTo(i); start(); }));
+  window.addEventListener('resize',()=>goTo(cur));
 
-  /* 初期化 & リサイズ対応 */
-  function init(){ goTo(0); }
-  window.addEventListener('resize', () => goTo(cur));
-  init();
+  goTo(0);
   start();
 })();
 </script>
