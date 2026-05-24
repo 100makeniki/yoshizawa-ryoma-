@@ -1,253 +1,411 @@
-import { useState, useRef, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉澤遼馬 — 公式サイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--ac:#d1dc43;--gr:#1f865c;--dk:#111;--mid:#151515;--card:#1a1a1a;--card2:#161616;}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--dk);color:#fff;overflow-x:hidden;}
+a{text-decoration:none;}
 
-export default function YoshizawaRyoma() {
-  const [snsCur, setSnsCur] = useState(0);
-  const timerRef = useRef(null);
-  const N = 4;
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(17,17,17,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(209,220,67,0.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px;}
+.nav-logo{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;font-style:italic;color:var(--ac);letter-spacing:.06em;}
+.nav-logo span{color:#fff;}
+.nav-links{display:flex;gap:1.4rem;list-style:none;}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.55);transition:color .2s;}
+.nav-links a:hover{color:var(--ac);}
 
-  const resetTimer = (i) => {
-    clearInterval(timerRef.current);
-    setSnsCur(((i % N) + N) % N);
-    timerRef.current = setInterval(() => setSnsCur(c => (c + 1) % N), 4500);
-  };
+/* HERO */
+.hero{position:relative;overflow:hidden;}
+.hero-line{position:absolute;top:0;right:40%;width:1px;height:100%;background:rgba(209,220,67,0.12);pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:530px;}
+.hero-left{background:var(--dk);display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem;}
+.hero-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.25em;color:var(--ac);margin-bottom:14px;}
+.hero-name{font-family:'Montserrat',sans-serif;font-size:50px;font-weight:900;font-style:italic;line-height:1.05;color:#fff;margin-bottom:6px;white-space:nowrap;}
+.hero-name span{color:var(--ac);}
+.hero-name-jp{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,0.3);margin-bottom:22px;}
+.hero-tagline{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.1;color:rgba(255,255,255,0.7);margin-bottom:26px;max-width:300px;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:6px;}
+.badge{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.05em;border:1px solid var(--ac);color:var(--ac);padding:4px 10px;border-radius:2px;}
+.hero-right{background:var(--card2);border-left:1px solid rgba(209,220,67,0.1);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem 2rem;gap:18px;}
+.hero-avatar{width:155px;height:155px;border-radius:50%;background:linear-gradient(135deg,var(--gr),#0d4a31);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:50px;font-weight:800;color:#fff;border:3px solid var(--ac);box-shadow:0 0 0 8px rgba(209,220,67,0.07);flex-shrink:0;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:230px;}
+.stat-card{background:var(--card);border:1px solid rgba(209,220,67,0.12);border-radius:4px;padding:.7rem;text-align:center;}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;font-style:italic;color:var(--ac);}
+.stat-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-top:3px;}
+.hero-bar{height:3px;background:linear-gradient(90deg,var(--gr),var(--ac),transparent);}
 
-  useEffect(() => {
-    timerRef.current = setInterval(() => setSnsCur(c => (c + 1) % N), 4500);
-    return () => clearInterval(timerRef.current);
-  }, []);
+/* SECTIONS */
+section{padding:4.5rem 2rem;}
+.sec-eye{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.25em;color:var(--ac);margin-bottom:8px;}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;font-style:italic;color:#fff;margin-bottom:28px;}
 
-  const snsData = [
-    { id: 'x', bg: '#000', name: '吉澤遼馬', handle: '@Knee_geek', url: 'https://x.com/Knee_geek', label: 'Xで見る',
-      posts: [
-        { date: '2025.05.20', text: '法人経営×整形外科勤務、今日も現場からリアルをお届けします。柔道整復師の新しいキャリアについて考えていること。' },
-        { date: '2025.05.18', text: '膝の痛みに悩む患者さんが「Sensory First」のアプローチで変わっていく瞬間が一番好き。' },
-        { date: '2025.05.15', text: '経営と臨床、どちらも手を抜けない。だからこそ面白い。#柔道整復師 #ヒザラジ' },
-        { date: '2025.05.12', text: '今日のヒザラジ更新しました。「なぜ柔道整復師が会社を作るのか」について話しています。' },
-      ]
-    },
-    { id: 'ig', bg: 'linear-gradient(135deg,#f09433,#dc2743,#bc1888)', name: '吉澤遼馬（セラピスト）', handle: '@ryoma_yoshi_therapist', url: 'https://www.instagram.com/ryoma_yoshi_therapist/', label: 'Instagramで見る', embedSrc: 'https://www.instagram.com/ryoma_yoshi_therapist/embed' },
-    { id: 'fb', bg: '#1877f2', name: 'Ryoma Yoshizawa', handle: 'ryoma.yoshizawa1213', url: 'https://www.facebook.com/ryoma.yoshizawa1213', label: 'Facebookで見る', embedSrc: 'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=500&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false' },
-    { id: 'vo', bg: '#00c4a7', name: '吉澤遼馬のヒザラジ！', handle: 'voicy.jp/channel/4526', url: 'https://voicy.jp/channel/4526', label: 'Voicyで聴く', embedSrc: 'https://voicy.jp/channel/4526/embed' },
-  ];
+/* PROFILE */
+#profile{background:var(--mid);}
+.profile-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start;}
+.profile-card{background:var(--card);border:1px solid rgba(209,220,67,0.15);border-radius:4px;padding:1.75rem;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gr),var(--ac));}
+.p-role{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;color:var(--ac);margin-bottom:6px;}
+.p-name{font-family:'Noto Serif JP',serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:4px;}
+.p-name-en{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:.1em;margin-bottom:14px;}
+.p-divider{height:1px;background:rgba(255,255,255,0.07);margin:10px 0;}
+.p-item{display:flex;gap:9px;margin-bottom:9px;align-items:flex-start;}
+.p-icon{width:25px;height:25px;background:var(--gr);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;}
+.p-item-label{font-size:10px;color:rgba(255,255,255,0.38);}
+.p-item-val{font-size:12px;color:#fff;font-weight:500;margin-top:2px;}
+.profile-bio{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.3;color:rgba(255,255,255,0.72);}
+.profile-bio p{margin-bottom:14px;}
+.phil{margin-top:18px;border-left:3px solid var(--ac);padding:12px 16px;background:var(--card);border-radius:0 4px 4px 0;}
+.phil-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--ac);margin-bottom:5px;}
+.phil-text{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:600;color:#fff;line-height:1.9;}
 
-  const cardW = 460, gap = 20, peek = 56;
-  const offset = -(snsCur * (cardW + gap)) + peek;
-  const ac = '#d1dc43', gr = '#1f865c', dk = '#111';
+/* SERVICES */
+#service{background:var(--dk);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.svc-card{background:var(--card2);border:1px solid rgba(209,220,67,0.12);border-radius:4px;padding:1.5rem;transition:border-color .2s;}
+.svc-card:hover{border-color:var(--ac);}
+.svc-icon{width:36px;height:36px;background:var(--gr);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:17px;}
+.svc-co{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:5px;}
+.svc-title{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:7px;line-height:1.5;}
+.svc-desc{font-size:11px;line-height:1.9;color:rgba(255,255,255,0.48);}
 
-  return (
-    <div style={{fontFamily:"'DM Sans','Noto Sans JP',sans-serif",background:dk,color:'#fff',overflowX:'hidden'}}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');*{box-sizing:border-box;margin:0;padding:0;}a{text-decoration:none;}`}</style>
+/* YOUTUBE */
+#youtube{background:var(--mid);}
+.yt-wrap{border-radius:6px;overflow:hidden;border:1px solid rgba(209,220,67,0.15);aspect-ratio:16/9;width:100%;margin-bottom:12px;}
+.yt-wrap iframe{width:100%;height:100%;display:block;border:none;}
+.yt-meta{display:flex;align-items:center;gap:12px;}
+.yt-badge{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;padding:5px 14px;border-radius:3px;white-space:nowrap;}
+.yt-desc{font-family:'Noto Serif JP',serif;font-size:12px;color:rgba(255,255,255,0.48);line-height:1.8;}
 
-      {/* NAV */}
-      <nav style={{position:'sticky',top:0,zIndex:100,background:'rgba(17,17,17,0.96)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(209,220,67,0.2)',padding:'0 2rem',display:'flex',alignItems:'center',justifyContent:'space-between',height:58}}>
-        <div style={{fontFamily:'Montserrat',fontSize:15,fontWeight:900,fontStyle:'italic',color:ac,letterSpacing:'.06em'}}>YOSHIZAWA<span style={{color:'#fff'}}>.</span></div>
-        <ul style={{display:'flex',gap:'1.4rem',listStyle:'none'}}>
-          {['PROFILE','SERVICES','YOUTUBE','NEWS','SNS','CONTACT'].map(t=>(
-            <li key={t}><a href="#" style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.55)'}}>{t}</a></li>
-          ))}
-        </ul>
-      </nav>
+/* NEWS */
+#news{background:var(--dk);}
+.news-item{display:grid;grid-template-columns:108px 78px 1fr;gap:14px;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.news-date{font-family:'Montserrat',sans-serif;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:.05em;}
+.news-tag{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;border:1px solid var(--ac);color:var(--ac);padding:3px 7px;border-radius:2px;text-align:center;}
+.news-title{font-family:'Noto Serif JP',serif;font-size:12px;color:rgba(255,255,255,0.72);line-height:1.7;}
 
-      {/* HERO */}
-      <div style={{position:'relative',overflow:'hidden'}}>
-        <div style={{position:'absolute',top:0,right:'40%',width:1,height:'100%',background:'rgba(209,220,67,0.12)',pointerEvents:'none'}}/>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',minHeight:530}}>
-          <div style={{background:dk,display:'flex',flexDirection:'column',justifyContent:'center',padding:'4rem 3rem'}}>
-            <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:14}}>REPRESENTATIVE / JUDO THERAPIST</p>
-            <h1 style={{fontFamily:'Montserrat',fontSize:50,fontWeight:900,fontStyle:'italic',lineHeight:1.05,color:'#fff',marginBottom:6,whiteSpace:'nowrap'}}>YOSHIZAWA<br/><span style={{color:ac}}>RYOMA</span></h1>
-            <p style={{fontFamily:'Montserrat',fontSize:11,letterSpacing:'.12em',color:'rgba(255,255,255,0.3)',marginBottom:22}}>吉澤 遼馬</p>
-            <p style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.1,color:'rgba(255,255,255,0.7)',marginBottom:26,maxWidth:300}}>法人経営と臨床の現場を両立する<br/>柔道整復師の新しいキャリアモデルを描く。</p>
-            <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
-              {['柔道整復師','Life is journey','bonds',"J's.treatment 三田院"].map(b=>(
-                <span key={b} style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.05em',border:`1px solid ${ac}`,color:ac,padding:'4px 10px',borderRadius:2}}>{b}</span>
-              ))}
-            </div>
-          </div>
-          <div style={{background:'#161616',borderLeft:'1px solid rgba(209,220,67,0.1)',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'3rem 2rem',gap:18}}>
-            <div style={{width:155,height:155,borderRadius:'50%',background:`linear-gradient(135deg,${gr},#0d4a31)`,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Noto Serif JP'",fontSize:50,fontWeight:800,color:'#fff',border:`3px solid ${ac}`,boxShadow:`0 0 0 8px rgba(209,220,67,0.07)`,flexShrink:0}}>遼</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8,width:'100%',maxWidth:230}}>
-              {[['2','法人代表'],['1','唯一の柔整師'],['5','発信媒体'],['∞','可能性']].map(([n,l])=>(
-                <div key={l} style={{background:'#1a1a1a',border:'1px solid rgba(209,220,67,0.12)',borderRadius:4,padding:'.7rem',textAlign:'center'}}>
-                  <div style={{fontFamily:'Montserrat',fontSize:20,fontWeight:900,fontStyle:'italic',color:ac}}>{n}</div>
-                  <div style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.08em',color:'rgba(255,255,255,0.35)',marginTop:3}}>{l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div style={{height:3,background:`linear-gradient(90deg,${gr},${ac},transparent)`}}/>
+/* SNS SLIDER */
+#sns{background:var(--mid);overflow:hidden;}
+.sns-viewport{overflow:hidden;}
+.sns-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.sns-card{flex-shrink:0;width:460px;background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;opacity:0.42;transition:opacity .3s,border-color .3s;}
+.sns-card.active{opacity:1;border-color:var(--ac);}
+.sns-card-header{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.sns-platform-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:13px;font-weight:700;}
+.sns-card-name{font-family:'Noto Serif JP',serif;font-size:12px;font-weight:500;color:#fff;}
+.sns-card-handle{font-family:'Montserrat',sans-serif;font-size:9px;color:rgba(255,255,255,0.38);letter-spacing:.04em;}
+.sns-card-body{height:265px;overflow:hidden;background:var(--card2);}
+.sns-card-body iframe{width:100%;height:100%;border:none;display:block;}
+.x-mock{height:265px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:7px;}
+.x-post{background:#1e1e1e;border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:8px 11px;}
+.x-post-date{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--ac);margin-bottom:3px;}
+.x-post-text{font-family:'Noto Serif JP',serif;font-size:11px;color:rgba(255,255,255,0.68);line-height:1.8;}
+.sns-card-footer{padding:9px 14px;border-top:1px solid rgba(255,255,255,0.06);text-align:right;}
+.sns-card-footer a{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--ac);letter-spacing:.05em;}
+.sns-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;}
+.sns-arrow{width:32px;height:32px;border-radius:50%;border:1px solid rgba(209,220,67,0.3);background:transparent;cursor:pointer;color:var(--ac);font-size:15px;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.sns-arrow:hover{border-color:var(--ac);}
+.sns-dots{display:flex;gap:7px;}
+.sns-dot{height:4px;border-radius:2px;border:none;cursor:pointer;transition:all .25s;background:rgba(255,255,255,0.18);}
+.sns-dot.active{background:var(--ac);}
+
+/* CONTACT */
+#contact{background:var(--card2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
+.contact-text{font-family:'Noto Serif JP',serif;font-size:13px;line-height:2.2;color:rgba(255,255,255,0.62);margin-bottom:18px;}
+.contact-info{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.contact-form{display:flex;flex-direction:column;gap:10px;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.45);}
+.form-input, .form-textarea{padding:9px 13px;font-size:12px;font-family:inherit;border:1px solid rgba(255,255,255,0.1);border-radius:3px;background:var(--card);color:#fff;outline:none;transition:border-color .2s;}
+.form-input:focus, .form-textarea:focus{border-color:var(--ac);}
+.form-textarea{height:95px;resize:vertical;}
+.form-submit{padding:11px 26px;background:var(--ac);color:var(--dk);border:none;border-radius:3px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:900;letter-spacing:.1em;cursor:pointer;align-self:flex-start;transition:opacity .2s;}
+.form-submit:hover{opacity:.85;}
+
+/* FOOTER */
+footer{background:#0a0a0a;border-top:3px solid var(--ac);padding:2.5rem 2rem;text-align:center;}
+.footer-logo{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;font-style:italic;color:var(--ac);margin-bottom:12px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.4rem;margin-bottom:12px;}
+.footer-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,0.28);}
+.footer-links a:hover{color:var(--ac);}
+.footer-copy{font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YOSHIZAWA<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#profile">PROFILE</a></li>
+    <li><a href="#service">SERVICES</a></li>
+    <li><a href="#youtube">YOUTUBE</a></li>
+    <li><a href="#news">NEWS</a></li>
+    <li><a href="#sns">SNS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-line"></div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <p class="hero-eyebrow">REPRESENTATIVE / JUDO THERAPIST</p>
+      <h1 class="hero-name">YOSHIZAWA<br><span>RYOMA</span></h1>
+      <p class="hero-name-jp">吉澤 遼馬</p>
+      <p class="hero-tagline">法人経営と臨床の現場を両立する<br>柔道整復師の新しいキャリアモデルを描く。</p>
+      <div class="hero-badges">
+        <span class="badge">柔道整復師</span>
+        <span class="badge">Life is journey</span>
+        <span class="badge">bonds</span>
+        <span class="badge">J's.treatment 三田院</span>
       </div>
-
-      {/* PROFILE */}
-      <section id="profile" style={{padding:'4.5rem 2rem',background:'#151515'}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— PROFILE</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>代表プロフィール</h2>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:'3rem',alignItems:'start'}}>
-          <div style={{background:'#1a1a1a',border:'1px solid rgba(209,220,67,0.15)',borderRadius:4,padding:'1.75rem',position:'relative',overflow:'hidden'}}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${gr},${ac})`}}/>
-            <p style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.15em',color:ac,marginBottom:6}}>REPRESENTATIVE DIRECTOR</p>
-            <p style={{fontFamily:"'Noto Serif JP'",fontSize:21,fontWeight:700,color:'#fff',marginBottom:4}}>吉澤 遼馬</p>
-            <p style={{fontFamily:'Montserrat',fontSize:10,color:'rgba(255,255,255,0.28)',letterSpacing:'.1em',marginBottom:14}}>Yoshizawa Ryoma</p>
-            <div style={{height:1,background:'rgba(255,255,255,0.07)',margin:'10px 0'}}/>
-            {[['🏢','所属企業',<><div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>株式会社 Life is journey</div><div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:3}}>株式会社 bonds</div></>],
-              ['📜','資格・職種',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>柔道整復師 / 整形外科勤務</div>],
-              ['🏠','治療院',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>J's.treatment 三田院</div>],
-              ['🎙','Voicy',<div style={{fontSize:12,color:'#fff',fontWeight:500,marginTop:2}}>吉澤遼馬のヒザラジ！</div>],
-            ].map(([ic,label,val])=>(
-              <div key={label} style={{display:'flex',gap:9,marginBottom:9,alignItems:'flex-start'}}>
-                <div style={{width:25,height:25,background:gr,borderRadius:4,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:11}}>{ic}</div>
-                <div><div style={{fontSize:10,color:'rgba(255,255,255,0.38)'}}>{label}</div>{val}</div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <div style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.3,color:'rgba(255,255,255,0.72)'}}>
-              <p style={{marginBottom:14}}>法人を経営しながら整形外科に勤務する、日本でも唯一無二の柔道整復師として活動しています。「柔道整復師の新しいキャリアモデルを描く」というビジョンのもと、臨床の最前線と経営の両立に挑戦し続けています。</p>
-              <p>J's.treatment 三田院では「No just treatment, It's learning」をコンセプトに、Sensory Firstのアプローチで患者さんの身体と向き合っています。</p>
-            </div>
-            <div style={{marginTop:18,borderLeft:`3px solid ${ac}`,padding:'12px 16px',background:'#1a1a1a',borderRadius:'0 4px 4px 0'}}>
-              <p style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.2em',color:ac,marginBottom:5}}>MISSION</p>
-              <p style={{fontFamily:"'Noto Serif JP'",fontSize:14,fontWeight:600,color:'#fff',lineHeight:1.9}}>「柔道整復師の新しいキャリアを描く」<br/>— 人と人を繋ぐ絆を大切に</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section id="service" style={{padding:'4.5rem 2rem',background:dk}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— SERVICES</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>事業内容</h2>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
-          {[['⚡',"J's.treatment 三田院",'柔道整復・施術サービス','Sensory Firstのアプローチで、痛みや不調の根本に働きかける治療を提供。完全予約制。'],
-            ['💼','株式会社 Life is journey','コンサルティング・経営支援','医療・治療院分野の経営コンサルティング。柔道整復師のキャリア形成・独立開業サポート。'],
-            ['🤝','株式会社 bonds','コミュニティ・絆づくり','「人と人を繋ぐ絆」をモットーに、同業者ネットワーク構築やセミナー・イベント企画運営を支援。'],
-          ].map(([ic,co,title,desc])=>(
-            <div key={title} style={{background:'#161616',border:'1px solid rgba(209,220,67,0.12)',borderRadius:4,padding:'1.5rem'}}>
-              <div style={{width:36,height:36,background:gr,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12,fontSize:17}}>{ic}</div>
-              <p style={{fontFamily:'Montserrat',fontSize:8,fontWeight:700,letterSpacing:'.12em',textTransform:'uppercase',color:ac,marginBottom:5}}>{co}</p>
-              <h3 style={{fontFamily:"'Noto Serif JP'",fontSize:14,fontWeight:600,color:'#fff',marginBottom:7,lineHeight:1.5}}>{title}</h3>
-              <p style={{fontSize:11,lineHeight:1.9,color:'rgba(255,255,255,0.48)'}}>{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* YOUTUBE */}
-      <section id="youtube" style={{padding:'4.5rem 2rem',background:'#151515'}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— YOUTUBE</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:22}}>J's.treatment 三田院</h2>
-        <div style={{borderRadius:6,overflow:'hidden',border:'1px solid rgba(209,220,67,0.15)',aspectRatio:'16/9',width:'100%'}}>
-          <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UCF0gFSQUSot6-E2Jvm4L1hw&autoplay=0&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowFullScreen title="YouTube" style={{width:'100%',height:'100%',border:'none',display:'block'}}/>
-        </div>
-        <div style={{display:'flex',alignItems:'center',gap:12,marginTop:12}}>
-          <span style={{display:'inline-flex',alignItems:'center',gap:6,background:'#ff0000',color:'#fff',fontFamily:'Montserrat',fontSize:11,fontWeight:700,padding:'5px 14px',borderRadius:3,whiteSpace:'nowrap'}}>▶ YOUTUBE</span>
-          <p style={{fontFamily:"'Noto Serif JP'",fontSize:12,color:'rgba(255,255,255,0.48)',lineHeight:1.8}}>「No just treatment, It's learning」— 治療の仕組みや根拠、臨床に基づく知識を発信中。</p>
-        </div>
-      </section>
-
-      {/* NEWS */}
-      <section id="news" style={{padding:'4.5rem 2rem',background:dk}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— NEWS</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:24}}>ニュース・お知らせ</h2>
-        {[['2025.05.01','VOICY','「ヒザラジ！」新エピソード配信 — 経営と臨床のリアルを語ります'],
-          ['2025.04.15','SEMINAR','柔道整復師のキャリア形成セミナー開催のお知らせ'],
-          ['2025.03.20','MEDIA','業界誌インタビュー掲載「法人経営×臨床 両立の秘訣」'],
-          ['2025.02.10','YOUTUBE',"J's.treatment 三田院 YouTubeチャンネル開設"],
-        ].map(([d,t,title])=>(
-          <div key={d} style={{display:'grid',gridTemplateColumns:'108px 78px 1fr',gap:14,alignItems:'center',padding:'1rem 0',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-            <span style={{fontFamily:'Montserrat',fontSize:11,color:'rgba(255,255,255,0.28)',letterSpacing:'.05em'}}>{d}</span>
-            <span style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',border:`1px solid ${ac}`,color:ac,padding:'3px 7px',borderRadius:2,textAlign:'center'}}>{t}</span>
-            <span style={{fontFamily:"'Noto Serif JP'",fontSize:12,color:'rgba(255,255,255,0.72)',lineHeight:1.7}}>{title}</span>
-          </div>
-        ))}
-      </section>
-
-      {/* SNS SLIDER */}
-      <section id="sns" style={{padding:'4.5rem 2rem',background:'#151515',overflow:'hidden'}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— SOCIAL MEDIA</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:24}}>SNS・発信チャンネル</h2>
-        <div style={{overflow:'hidden'}}>
-          <div style={{display:'flex',gap,transition:'transform .5s cubic-bezier(.4,0,.2,1)',transform:`translateX(${offset}px)`}}>
-            {snsData.map((s,i)=>(
-              <div key={s.id} style={{flexShrink:0,width:cardW,background:'#1a1a1a',border:`1px solid ${i===snsCur?ac:'rgba(255,255,255,0.07)'}`,borderRadius:6,overflow:'hidden',opacity:i===snsCur?1:0.42,transition:'opacity .3s,border-color .3s'}}>
-                <div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 14px',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-                  <div style={{width:30,height:30,borderRadius:7,background:s.bg,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,color:'#fff',fontSize:13,fontWeight:700}}>
-                    {s.id==='x'?'𝕏':s.id==='ig'?'📷':s.id==='fb'?'f':'🎙'}
-                  </div>
-                  <div>
-                    <div style={{fontFamily:"'Noto Serif JP'",fontSize:12,fontWeight:500,color:'#fff'}}>{s.name}</div>
-                    <div style={{fontFamily:'Montserrat',fontSize:9,color:'rgba(255,255,255,0.38)',letterSpacing:'.04em'}}>{s.handle}</div>
-                  </div>
-                </div>
-                <div style={{height:265,overflow:'hidden',background:'#161616'}}>
-                  {s.id==='x'?(
-                    <div style={{height:265,overflowY:'auto',padding:10,display:'flex',flexDirection:'column',gap:7}}>
-                      {s.posts.map(p=>(
-                        <div key={p.date} style={{background:'#1e1e1e',border:'1px solid rgba(255,255,255,0.05)',borderRadius:5,padding:'8px 11px'}}>
-                          <div style={{fontFamily:'Montserrat',fontSize:9,color:ac,marginBottom:3}}>{p.date}</div>
-                          <div style={{fontFamily:"'Noto Serif JP'",fontSize:11,color:'rgba(255,255,255,0.68)',lineHeight:1.8}}>{p.text}</div>
-                        </div>
-                      ))}
-                    </div>
-                  ):(
-                    <iframe src={s.embedSrc} scrolling="no" allowTransparency style={{width:'100%',height:'100%',border:'none',display:'block'}} title={s.name}/>
-                  )}
-                </div>
-                <div style={{padding:'9px 14px',borderTop:'1px solid rgba(255,255,255,0.06)',textAlign:'right'}}>
-                  <a href={s.url} target="_blank" rel="noreferrer" style={{fontFamily:'Montserrat',fontSize:11,fontWeight:700,color:ac,letterSpacing:'.05em'}}>{s.label} ↗</a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,marginTop:16}}>
-          <button style={{width:32,height:32,borderRadius:'50%',border:`1px solid rgba(209,220,67,0.3)`,background:'transparent',cursor:'pointer',color:ac,fontSize:15,display:'flex',alignItems:'center',justifyContent:'center'}} onClick={()=>resetTimer(snsCur-1)}>‹</button>
-          <div style={{display:'flex',gap:7}}>
-            {snsData.map((_,i)=>(
-              <button key={i} onClick={()=>resetTimer(i)} style={{height:4,width:i===snsCur?22:6,borderRadius:2,border:'none',cursor:'pointer',transition:'all .25s',background:i===snsCur?ac:'rgba(255,255,255,0.18)'}}/>
-            ))}
-          </div>
-          <button style={{width:32,height:32,borderRadius:'50%',border:`1px solid rgba(209,220,67,0.3)`,background:'transparent',cursor:'pointer',color:ac,fontSize:15,display:'flex',alignItems:'center',justifyContent:'center'}} onClick={()=>resetTimer(snsCur+1)}>›</button>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" style={{padding:'4.5rem 2rem',background:'#161616'}}>
-        <p style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.25em',color:ac,marginBottom:8}}>— CONTACT</p>
-        <h2 style={{fontFamily:'Montserrat',fontSize:26,fontWeight:900,fontStyle:'italic',color:'#fff',marginBottom:28}}>お問い合わせ</h2>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1.2fr',gap:'4rem',alignItems:'start'}}>
-          <div>
-            <p style={{fontFamily:"'Noto Serif JP'",fontSize:13,lineHeight:2.2,color:'rgba(255,255,255,0.62)',marginBottom:18}}>事業に関するご相談・講演依頼・取材・コラボレーション等、お気軽にご連絡ください。</p>
-            {[['🏢','株式会社 Life is journey / 株式会社 bonds'],['📍','東京都港区芝3丁目17番14号 中野第5ビル6階'],['✉️','お問い合わせフォームよりご連絡ください']].map(([ic,t])=>(
-              <div key={t} style={{display:'flex',alignItems:'flex-start',gap:10,marginBottom:10,fontSize:12,color:'rgba(255,255,255,0.55)',lineHeight:1.7}}>{ic} {t}</div>
-            ))}
-          </div>
-          <div style={{display:'flex',flexDirection:'column',gap:10}}>
-            {[['お名前','text','山田 太郎'],['メールアドレス','email','example@email.com'],['件名','text','ご相談内容の件名']].map(([l,t,ph])=>(
-              <div key={l} style={{display:'flex',flexDirection:'column',gap:4}}>
-                <label style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.45)'}}>{l}</label>
-                <input type={t} placeholder={ph} style={{padding:'9px 13px',fontSize:12,fontFamily:'inherit',border:'1px solid rgba(255,255,255,0.1)',borderRadius:3,background:'#1a1a1a',color:'#fff',outline:'none'}}/>
-              </div>
-            ))}
-            <div style={{display:'flex',flexDirection:'column',gap:4}}>
-              <label style={{fontFamily:'Montserrat',fontSize:9,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.45)'}}>メッセージ</label>
-              <textarea placeholder="お問い合わせ内容をご記入ください" style={{padding:'9px 13px',fontSize:12,fontFamily:'inherit',border:'1px solid rgba(255,255,255,0.1)',borderRadius:3,background:'#1a1a1a',color:'#fff',outline:'none',height:95,resize:'vertical'}}/>
-            </div>
-            <button style={{padding:'11px 26px',background:ac,color:dk,border:'none',borderRadius:3,fontFamily:'Montserrat',fontSize:11,fontWeight:900,letterSpacing:'.1em',cursor:'pointer',alignSelf:'flex-start'}}>SEND MESSAGE →</button>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer style={{background:'#0a0a0a',borderTop:`3px solid ${ac}`,padding:'2.5rem 2rem',textAlign:'center'}}>
-        <p style={{fontFamily:'Montserrat',fontSize:17,fontWeight:900,fontStyle:'italic',color:ac,marginBottom:12}}>YOSHIZAWA RYOMA</p>
-        <div style={{display:'flex',justifyContent:'center',flexWrap:'wrap',gap:'1.4rem',marginBottom:12}}>
-          {['PROFILE','SERVICES','YOUTUBE','NEWS','SNS','CONTACT'].map(t=>(
-            <a key={t} href="#" style={{fontFamily:'Montserrat',fontSize:10,fontWeight:700,letterSpacing:'.1em',color:'rgba(255,255,255,0.28)'}}>{t}</a>
-          ))}
-        </div>
-        <p style={{fontFamily:'Montserrat',fontSize:10,color:'rgba(255,255,255,0.18)',letterSpacing:'.06em'}}>© 2025 Yoshizawa Ryoma. All Rights Reserved.</p>
-      </footer>
     </div>
-  );
-}
+    <div class="hero-right">
+      <div class="hero-avatar">遼</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">法人代表</div></div>
+        <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">唯一の柔整師</div></div>
+        <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">発信媒体</div></div>
+        <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">可能性</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bar"></div>
+</div>
+
+<!-- PROFILE -->
+<section id="profile">
+  <p class="sec-eye">— PROFILE</p>
+  <h2 class="sec-title">代表プロフィール</h2>
+  <div class="profile-grid">
+    <div class="profile-card">
+      <p class="p-role">REPRESENTATIVE DIRECTOR</p>
+      <p class="p-name">吉澤 遼馬</p>
+      <p class="p-name-en">Yoshizawa Ryoma</p>
+      <div class="p-divider"></div>
+      <div class="p-item">
+        <div class="p-icon">🏢</div>
+        <div><div class="p-item-label">所属企業</div><div class="p-item-val">株式会社 Life is journey</div><div class="p-item-val" style="margin-top:3px">株式会社 bonds</div></div>
+      </div>
+      <div class="p-item">
+        <div class="p-icon">📜</div>
+        <div><div class="p-item-label">資格・職種</div><div class="p-item-val">柔道整復師 / 整形外科勤務</div></div>
+      </div>
+      <div class="p-item">
+        <div class="p-icon">🏠</div>
+        <div><div class="p-item-label">治療院</div><div class="p-item-val">J's.treatment 三田院</div></div>
+      </div>
+      <div class="p-item">
+        <div class="p-icon">🎙</div>
+        <div><div class="p-item-label">Voicy</div><div class="p-item-val">吉澤遼馬のヒザラジ！</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="profile-bio">
+        <p>法人を経営しながら整形外科に勤務する、日本でも唯一無二の柔道整復師として活動しています。「柔道整復師の新しいキャリアモデルを描く」というビジョンのもと、臨床の最前線と経営の両立に挑戦し続けています。</p>
+        <p>J's.treatment 三田院では「No just treatment, It's learning」をコンセプトに、Sensory Firstのアプローチで患者さんの身体と向き合っています。</p>
+      </div>
+      <div class="phil">
+        <p class="phil-label">MISSION</p>
+        <p class="phil-text">「柔道整復師の新しいキャリアを描く」<br>— 人と人を繋ぐ絆を大切に</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="service">
+  <p class="sec-eye">— SERVICES</p>
+  <h2 class="sec-title">事業内容</h2>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">⚡</div>
+      <p class="svc-co">J's.treatment 三田院</p>
+      <h3 class="svc-title">柔道整復・施術サービス</h3>
+      <p class="svc-desc">Sensory Firstのアプローチで、痛みや不調の根本に働きかける治療を提供。完全予約制。</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💼</div>
+      <p class="svc-co">株式会社 Life is journey</p>
+      <h3 class="svc-title">コンサルティング・経営支援</h3>
+      <p class="svc-desc">医療・治療院分野の経営コンサルティング。柔道整復師のキャリア形成・独立開業サポート。</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🤝</div>
+      <p class="svc-co">株式会社 bonds</p>
+      <h3 class="svc-title">コミュニティ・絆づくり</h3>
+      <p class="svc-desc">「人と人を繋ぐ絆」をモットーに、同業者ネットワーク構築やセミナー・イベント企画運営を支援。</p>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBE -->
+<section id="youtube">
+  <p class="sec-eye">— YOUTUBE</p>
+  <h2 class="sec-title">J's.treatment 三田院</h2>
+  <div class="yt-wrap">
+    <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UCF0gFSQUSot6-E2Jvm4L1hw&autoplay=0&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen title="YouTube"></iframe>
+  </div>
+  <div class="yt-meta">
+    <span class="yt-badge">▶ YOUTUBE</span>
+    <p class="yt-desc">「No just treatment, It's learning」— 治療の仕組みや根拠、臨床に基づく知識を発信中。</p>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <p class="sec-eye">— NEWS</p>
+  <h2 class="sec-title">ニュース・お知らせ</h2>
+  <div class="news-item"><span class="news-date">2025.05.01</span><span class="news-tag">VOICY</span><span class="news-title">「ヒザラジ！」新エピソード配信 — 経営と臨床のリアルを語ります</span></div>
+  <div class="news-item"><span class="news-date">2025.04.15</span><span class="news-tag">SEMINAR</span><span class="news-title">柔道整復師のキャリア形成セミナー開催のお知らせ</span></div>
+  <div class="news-item"><span class="news-date">2025.03.20</span><span class="news-tag">MEDIA</span><span class="news-title">業界誌インタビュー掲載「法人経営×臨床 両立の秘訣」</span></div>
+  <div class="news-item"><span class="news-date">2025.02.10</span><span class="news-tag">YOUTUBE</span><span class="news-title">J's.treatment 三田院 YouTubeチャンネル開設</span></div>
+</section>
+
+<!-- SNS SLIDER -->
+<section id="sns">
+  <p class="sec-eye">— SOCIAL MEDIA</p>
+  <h2 class="sec-title">SNS・発信チャンネル</h2>
+  <div class="sns-viewport">
+    <div class="sns-track" id="snsTrack">
+      <!-- X -->
+      <div class="sns-card active" id="sns-0">
+        <div class="sns-card-header">
+          <div class="sns-platform-icon" style="background:#000">𝕏</div>
+          <div><div class="sns-card-name">吉澤遼馬</div><div class="sns-card-handle">@Knee_geek</div></div>
+        </div>
+        <div class="sns-card-body">
+          <div class="x-mock">
+            <div class="x-post"><div class="x-post-date">2025.05.20</div><div class="x-post-text">法人経営×整形外科勤務、今日も現場からリアルをお届けします。柔道整復師の新しいキャリアについて考えていること。</div></div>
+            <div class="x-post"><div class="x-post-date">2025.05.18</div><div class="x-post-text">膝の痛みに悩む患者さんが「Sensory First」のアプローチで変わっていく瞬間が一番好き。</div></div>
+            <div class="x-post"><div class="x-post-date">2025.05.15</div><div class="x-post-text">経営と臨床、どちらも手を抜けない。だからこそ面白い。#柔道整復師 #ヒザラジ</div></div>
+            <div class="x-post"><div class="x-post-date">2025.05.12</div><div class="x-post-text">今日のヒザラジ更新しました。「なぜ柔道整復師が会社を作るのか」について話しています。</div></div>
+          </div>
+        </div>
+        <div class="sns-card-footer"><a href="https://x.com/Knee_geek" target="_blank">Xで見る ↗</a></div>
+      </div>
+      <!-- Instagram -->
+      <div class="sns-card" id="sns-1">
+        <div class="sns-card-header">
+          <div class="sns-platform-icon" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)">📷</div>
+          <div><div class="sns-card-name">吉澤遼馬（セラピスト）</div><div class="sns-card-handle">@ryoma_yoshi_therapist</div></div>
+        </div>
+        <div class="sns-card-body">
+          <iframe src="https://www.instagram.com/ryoma_yoshi_therapist/embed" scrolling="no" allowtransparency="true" title="Instagram"></iframe>
+        </div>
+        <div class="sns-card-footer"><a href="https://www.instagram.com/ryoma_yoshi_therapist/" target="_blank">Instagramで見る ↗</a></div>
+      </div>
+      <!-- Facebook -->
+      <div class="sns-card" id="sns-2">
+        <div class="sns-card-header">
+          <div class="sns-platform-icon" style="background:#1877f2;font-family:serif;font-weight:700">f</div>
+          <div><div class="sns-card-name">Ryoma Yoshizawa</div><div class="sns-card-handle">ryoma.yoshizawa1213</div></div>
+        </div>
+        <div class="sns-card-body">
+          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fryoma.yoshizawa1213&tabs=timeline&width=500&height=265&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" title="Facebook"></iframe>
+        </div>
+        <div class="sns-card-footer"><a href="https://www.facebook.com/ryoma.yoshizawa1213" target="_blank">Facebookで見る ↗</a></div>
+      </div>
+      <!-- Voicy -->
+      <div class="sns-card" id="sns-3">
+        <div class="sns-card-header">
+          <div class="sns-platform-icon" style="background:#00c4a7">🎙</div>
+          <div><div class="sns-card-name">吉澤遼馬のヒザラジ！</div><div class="sns-card-handle">voicy.jp/channel/4526</div></div>
+        </div>
+        <div class="sns-card-body">
+          <iframe src="https://voicy.jp/channel/4526/embed" scrolling="no" title="Voicy"></iframe>
+        </div>
+        <div class="sns-card-footer"><a href="https://voicy.jp/channel/4526" target="_blank">Voicyで聴く ↗</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="sns-controls">
+    <button class="sns-arrow" id="snsL">‹</button>
+    <div class="sns-dots" id="snsDots">
+      <button class="sns-dot active" style="width:22px"></button>
+      <button class="sns-dot" style="width:6px"></button>
+      <button class="sns-dot" style="width:6px"></button>
+      <button class="sns-dot" style="width:6px"></button>
+    </div>
+    <button class="sns-arrow" id="snsR">›</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="sec-eye">— CONTACT</p>
+  <h2 class="sec-title">お問い合わせ</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-text">事業に関するご相談・講演依頼・取材・コラボレーション等、お気軽にご連絡ください。</p>
+      <div class="contact-info">🏢 株式会社 Life is journey / 株式会社 bonds</div>
+      <div class="contact-info">📍 東京都港区芝3丁目17番14号 中野第5ビル6階</div>
+      <div class="contact-info">✉️ お問い合わせフォームよりご連絡ください</div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label class="form-label">お名前</label><input class="form-input" type="text" placeholder="山田 太郎"></div>
+      <div class="form-group"><label class="form-label">メールアドレス</label><input class="form-input" type="email" placeholder="example@email.com"></div>
+      <div class="form-group"><label class="form-label">件名</label><input class="form-input" type="text" placeholder="ご相談内容の件名"></div>
+      <div class="form-group"><label class="form-label">メッセージ</label><textarea class="form-textarea" placeholder="お問い合わせ内容をご記入ください"></textarea></div>
+      <button class="form-submit">SEND MESSAGE →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">YOSHIZAWA RYOMA</p>
+  <div class="footer-links">
+    <a href="#profile">PROFILE</a>
+    <a href="#service">SERVICES</a>
+    <a href="#youtube">YOUTUBE</a>
+    <a href="#news">NEWS</a>
+    <a href="#sns">SNS</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+  <p class="footer-copy">© 2025 Yoshizawa Ryoma. All Rights Reserved.</p>
+</footer>
+
+<script>
+(function(){
+  const track = document.getElementById('snsTrack');
+  const dots  = document.querySelectorAll('.sns-dot');
+  const cards = document.querySelectorAll('.sns-card');
+  const N = 4, GAP = 20, PEEK = 56;
+  let cur = 0, timer;
+
+  function cw(){ return cards[0].offsetWidth + GAP; }
+
+  function goTo(i){
+    cur = ((i % N) + N) % N;
+    track.style.transform = `translateX(${-(cur * cw()) + PEEK}px)`;
+    dots.forEach((d,j)=>{
+      d.classList.toggle('active', j === cur);
+      d.style.width = j === cur ? '22px' : '6px';
+    });
+    cards.forEach((c,j) => c.classList.toggle('active', j === cur));
+  }
+
+  function start(){ timer = setInterval(()=>goTo(cur+1), 4500); }
+  function stop(){ clearInterval(timer); }
+
+  document.getElementById('snsR').onclick = ()=>{ stop(); goTo(cur+1); start(); };
+  document.getElementById('snsL').onclick = ()=>{ stop(); goTo(cur-1); start(); };
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{ stop(); goTo(i); start(); }));
+
+  goTo(0);
+  start();
+})();
+</script>
+</body>
+</html>
